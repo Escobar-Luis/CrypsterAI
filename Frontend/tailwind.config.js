@@ -5,6 +5,7 @@ module.exports = {
       screens: {
         'xs': '400px',
         '3xl': '1600px',
+        'md': '768px'
       },
       backgroundImage: {
         'space': "url('./components/dashboard/img/background.png')",},

@@ -5,6 +5,7 @@ import AOS from "aos";
 AOS.init();
 function Home() {
   useEffect(() => {
+    window.scrollTo(0,0)
     window.addEventListener("scroll", function (e) {
       let s = this.scrollY;
       let w = this.outerWidth;
@@ -36,7 +37,8 @@ function Home() {
       document.getElementsByClassName(
         "start"
       )[0].style = `transform: translate3d(${hr_3}px,0,0) scale(${z_5})`;
-    });
+    })
+      
   }, []);
 
   return (
@@ -103,7 +105,7 @@ function Home() {
             </div>
           </div>
           <div
-            className=" flex  items-center justify-center start-button "
+            className=" flex  items-center justify-center start-button hover:cursor-pointer "
             data-aos="zoom-in-top"
             data-aos-duration="5000"
           >
