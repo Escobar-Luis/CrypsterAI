@@ -2,6 +2,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        'xs': '400px',
+        '3xl': '1600px',
+      },
       backgroundImage: {
         'space': "url('./components/dashboard/img/background.png')",},
       colors: {
@@ -53,6 +57,8 @@ module.exports = {
       },
       fontFamily: {
         main: ["'Open Sans'"],
+        marker: ["'Montserrat'"],
+        whole: ["'Fredoka'"]
         // sans: ["Lato", "sans-serif"],
       },
     },

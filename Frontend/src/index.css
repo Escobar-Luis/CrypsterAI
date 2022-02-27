@@ -1,7 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Damion&family=Montserrat:wght@500&family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Damion&family=M+PLUS+Rounded+1c&family=Montserrat:wght@500&family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Damion&family=Fredoka&family=M+PLUS+Rounded+1c&family=Montserrat:wght@500&family=Parisienne&display=swap');
+html{
+  overflow-x: hidden;
+}
 
 .pt-sans {
   font-family: "PT Sans", sans-serif;
@@ -10,7 +15,7 @@
   font-family: "Damion", cursive;
 }
 .body-home {
-  font-family: "Open Sans", sans-serif;
+  text-shadow: 10px 10px rgb(88, 6, 88);
 }
 
 .text-shadow {
@@ -30,125 +35,32 @@
   height: 100%;
   top: 0;
   left: 0;
-  
 }
 
 .p-item1 {
   background: url("./images/m_1.png") center/cover no-repeat;
+  z-index: 1;
 }
 
 .p-item3 {
   background: url("./images/m_3.png") bottom/100% no-repeat;
   background-size: cover;
   background-position: center;
-  z-index: 1;
-
-  
-}
-
-.p-item4 {
-  position: absolute;
-  top: 500px;
-  left: 0;
-  width: 500px;
-  height: 500px;
-  content: "";
-  background: url("./images/pic_one.jpg")
-    repeat-y;
-  background-size: contain;
-  background-position: center;
-  animation: marquee 20s linear infinite;
-}
-
-.p-item::before{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1000%;
-  height: 100%;
-  content: '';
-  background: url("images/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png") repeat-x;
-  background-size: contain;
-  background-position: cener;
-  animation: marquee 20s linear infinite;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-200vw, 0, 0);
-  }
+  z-index: 3;
 }
 
 .contain {
   position: relative;
-  max-width: 1700px;
   margin: 0 auto;
-  margin-top: 100vh;
 }
-
+.start-button{
+  z-index:3;
+}
 .content-header {
-  font-family: sans-serif;
-  color: white;
-  text-align: center !important ;
-  text-transform: uppercase;
-  margin-left: 300px;
-}
-
-.content-header h1 {
-  font-size: 100px;
-  font-weight: 600;
-  color: white;
-  width: max-content;
-}
-
-.content-header h2 {
-  font-size: 40px;
-  font-weight: 500;
-  color: white;
-  /* width: max-content; */
-  /* margin-right: 20%; */
-}
-
-.content {
-  margin-right: -20%;
-  z-index: 4;
-  /* height:fit-content */
-}
-
-.t {
-  margin-bottom: 200px;
-  /* animation: marquee 20s linear infinite; */
-}
-
-.t {
-  animation-duration: 5s ;
-  animation-name: slidein;
-  animation-iteration-count: initial;
-  /* animation-delay: 3000s; */
-}
-
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
-
-  75% {
-    font-size: 200%;
-    margin-left: 75%;
-    width: 150%;
-  }
-
-  to {
-    margin-left: 5%;
-    width: 100%;
-  }
+  z-index: 2;
 }
 .start{
-  z-index: 5;
+  z-index: 2;
   bottom: 15%;
   cursor: pointer;
   margin-left: 20%;
