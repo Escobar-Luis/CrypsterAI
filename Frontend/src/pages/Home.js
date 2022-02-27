@@ -110,7 +110,7 @@ function Home() {
             data-aos-duration="5000"
           >
             <div className="  bg-black border-white rounded-xl xs:text-[4rem] text-[2rem] p-2 hover:animate-none shadow-2xl animate-pulse  shadow-purple-500">
-              <Link to="/register" className="">
+              <Link to="/login" className="">
                 Start
               </Link>
             </div>

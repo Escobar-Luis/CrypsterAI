@@ -188,6 +188,12 @@ function Login({ setUser }) {
               >
                 Don't have an account?
               </Link>
+              <Link
+                className=" tracking-wide  flex justify-center border-b border-gray-300 hover:text-purple-500"
+                to="/cryptos"
+              >
+                Continue As Guest
+              </Link>
               {/* <!-- form element --> */}
             </div>
           </div>

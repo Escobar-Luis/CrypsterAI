@@ -206,6 +206,7 @@ function Register({setUser}) {
               >
                 Already have an account?
               </Link>
+              
               {/* <!-- form element --> */}
             </div>
           </div>

@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import PublicRoute from "./utils/PublicRoute";
 import Login from "./pages/Login";
 import { useState, useEffect } from "react";
+import CryptoContainer from "./components/CryptoContainer";
+import { AuthProvider } from "./context/AuthContext";
 function App() {
   const [user, setUser] = useState(null);
   let isLogged = sessionStorage.getItem("accessToken") !== null ? true : false;
@@ -13,7 +15,8 @@ function App() {
   }
   return (
     // <div className=" App bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen">
-    <div className=" App font-whole ">
+    <div className=" App font-whole  ">
+        <AuthProvider>
       {/* <AuthProvider> */}
       <Routes>
         {/* for the route, it doesn't want a child but a child element  */}
@@ -26,14 +29,14 @@ function App() {
               <Route
                 path="dashboard"
                 element={<Dashboard setUser={setUser} user={user} />}
-              />
+  />*/}
               <Route
-                path="crypto"
-                element={<CryptoCardContainer user={user} />}
+                path="cryptos"
+                element={<CryptoContainer user={user} />}
               />
-            </Route> */}
+            {/* </Route>  */}
       </Routes>
-      {/* </AuthProvider> */}
+      </AuthProvider>
     </div>
   );
 }
