@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.pt-sans {
+  font-family: "PT Sans", sans-serif;
+}
+.damion {
+  font-family: "Damion", cursive;
+}
+.body-home {
+  font-family: "Open Sans", sans-serif;
+}
+
+.text-shadow {
+  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
