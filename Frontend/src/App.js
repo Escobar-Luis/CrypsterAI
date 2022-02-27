@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  return  (
+    <div className=" App bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen">
+   
+        {/* <AuthProvider> */}
+          <Routes>
+            {/* for the route, it doesn't want a child but a child element  */}
+            <Route path="/" element={<Home />} />
+            {/* <Route element={<PublicRoute isLogged={isLogged} />}>
+              <Route
+                path="/register"
+                element={<RegisterForm setUser={setUser} />}
+              />
+              <Route path="/login" element={<Login setUser={setUser} />} />
+            </Route>
+            <Route element={<PrivateRoute isLogged={isLogged} />}>
+              <Route
+                path="dashboard"
+                element={<Dashboard setUser={setUser} user={user} />}
+              />
+              <Route
+                path="crypto"
+                element={<CryptoCardContainer user={user} />}
+              />
+            </Route> */}
+          </Routes>
+        {/* </AuthProvider> */}
     </div>
   );
 }
+
 
 export default App;
