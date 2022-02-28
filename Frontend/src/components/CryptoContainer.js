@@ -73,8 +73,8 @@ const history= useNavigate()
       <div
         className={
           open
-            ? " blur-lg  grid grid-cols-1 md:grid-cols-6 mx-5 items-center justify-around gap-7 overflow-y-auto rounded-3xl h-screen"
-            : "  rounded-3xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 px-5 items-center justify-evenly gap-5 overflow-y-scroll  pt-10 pb-[6rem] h-screen"
+            ? " blur-lg  grid grid-cols-2 md:grid-cols-6 mx-5 items-center justify-around gap-7 overflow-y-auto rounded-3xl h-screen"
+            : "  rounded-3xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 px-5  items-center justify-evenly gap-5 overflow-y-scroll  pt-10 pb-[6rem] h-screen"
         }
       >
         {cryptoData == null
