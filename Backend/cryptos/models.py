@@ -6,7 +6,7 @@ class Token(models.Model):
     name = models.CharField(max_length=100)
     # If user selects token, if they delete themselves, they will delete any tokens they selected
     user = models.ForeignKey(
-        AUTH_USER_MODEL, on_delete=models.CASCADE
+        AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True
     )
     
 

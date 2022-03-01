@@ -30,8 +30,11 @@ class CreateToken(graphene.Mutation):
    
 
   # Where you really do all the mutation 🦁 🐉
-    def mutate(self, info, user_id,name):
-        userid = ExtendUser.objects.get(pk=user_id)
+    def mutate(self, info,name,user_id=None):
+        if user_id != None:
+            userid = ExtendUser.objects.get(pk=user_id)
+        else:
+            userid= user_id
         # if Token.objects.get(name=name):
         #     return None
         _token = Token.objects.create(
