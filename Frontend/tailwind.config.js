@@ -8,7 +8,7 @@ module.exports = {
         'md': '768px'
       },
       backgroundImage: {
-        'space': "url('./components/dashboard/img/background.png')",},
+        'space': "url('./pages/dashboard/img/background.png')",},
       colors: {
         "theme-blue": "#5515ef",
         "theme-pink": "#3c01ca",

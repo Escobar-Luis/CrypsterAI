@@ -3,16 +3,29 @@ import { useNavigate } from "react-router-dom";
 
 import CryptoCard from "./CryptoCard";
 import MoreInfo from "./MoreInfo";
-
-function CryptoCardContainer({ openDash, setOpenDash, brolic, setshown, popout, setclick, setSeen, setoptimizerForm, setChartForm, chartForm,optimizerForm}) {
-//   let {name} =useContext(AuthContext)
+import AuthContext from "../context/AuthContext";
+function CryptoCardContainer({userSeeing, userPortfolio, openDash, setOpenDash, brolic, setshown, popout, setclick, setSeen, setoptimizerForm, setChartForm, chartForm,optimizerForm}) {
+  let {name, user} =useContext(AuthContext)
   const [open, setOpen] = useState(false);
   const [more, setmore] = useState(null);
   const [search, setsearch] = useState("");
-  // console.log(more);
-  // console.log(search);
   const [cryptoData, setCryptoData] = useState(null);
+  const history= useNavigate()
 
+const portfolioVisibleCryptos = userPortfolio?.filter((c) => {
+  return c.id.includes(search.toLowerCase());
+});
+const not = cryptoData?.filter((c) =>{
+  return !userPortfolio?.some((f) => {
+    return f.id === c.id
+  })
+})
+const allVisibleCryptos = not?.filter((c) => {
+  return c.id.includes(search.toLowerCase()) ;
+});
+
+
+  console.log(user)
   useEffect(() => {
     fetch(
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false"
@@ -33,27 +46,10 @@ function CryptoCardContainer({ openDash, setOpenDash, brolic, setshown, popout, 
 
   }, []);
 
-  const visibleCryptos = cryptoData?.filter((c) => {
-    return c.id.includes(search.toLowerCase());
-  });
-
-const history= useNavigate()
-  function logout() {
-    // const response = axiosInstance.post('user/logout/blacklist/', {
-    //   refresh_token: localStorage.getItem('refresh_token'),
-    // })
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('refresh_token');
-    // axiosInstance.defaults.headers["Authorization"] = null
-    history('/login')
-
-  }
-  // console.log(cryptoData)
-  // console.log(visibleCryptos[0])
-
+ 
   return (
     // <div className='container-full flex items-center'>
-    <div className="bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen overflow-hidden ">
+    <div className={openDash? "": "bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen overflow-hidden "}>
     {/* <div className=" flex justify-center">
       <button onClick={logout} className="mt-5 p-3 rounded-full shadow-xl shadow-black border bg-yellow-500 border-blue-500 hover:bg-yellow-200">Logout</button>
     </div> */}
@@ -79,7 +75,20 @@ const history= useNavigate()
       >
         {cryptoData == null
           ? null
-          : visibleCryptos.map((c) => {
+          : userSeeing ==='portfolio' ?
+          portfolioVisibleCryptos.map((c) => {
+            return (
+              <CryptoCard
+                key={c.id}
+                crypto={c}
+                open={open}
+                setOpen={setOpen}
+                setmore={setmore}
+              />
+            );
+          })
+          :
+          allVisibleCryptos.map((c) => {
               return (
                 <CryptoCard
                   key={c.id}

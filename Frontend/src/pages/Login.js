@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import pic from "../images/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
 import { Link } from "react-router-dom";
 import { useNavigate} from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
+import AuthContext from "../context/AuthContext";
 function Login({ setUser }) {
   const [formData, updateFormData] = useState({ username: "", password: "" });
-
+  let { setIsLogged} = useContext(AuthContext);
   function handleChange(e) {
     updateFormData({
       ...formData,
@@ -131,15 +132,16 @@ function Login({ setUser }) {
               </div>
               {/* <!-- form caption --> */}
 
-              <div className="form-element">
+              <div className="form-element ">
                 <label className="space-y-2 w-full lg:w-4/5 block mx-auto">
                   <span className="block text-lg  tracking-wide">Username</span>
                   <span className="block">
                     <input
+                    
                       name="username"
                       onChange={handleChange}
                       type="text"
-                      className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
+                      className="bg-yellow-100 lg:bg-white border text-black lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
                     />
                   </span>
                 </label>
@@ -154,7 +156,7 @@ function Login({ setUser }) {
                       name="password"
                       onChange={handleChange}
                       type="password"
-                      className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
+                      className="bg-yellow-100 lg:bg-white border text-black  lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
                     />
                   </span>
                 </label>
@@ -188,7 +190,7 @@ function Login({ setUser }) {
               >
                 Don't have an account?
               </Link>
-              <Link
+              <Link onClick={()=>setIsLogged(true)}
                 className=" tracking-wide  flex justify-center border-b border-gray-300 hover:text-purple-500"
                 to="/cryptos"
               >

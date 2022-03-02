@@ -57,7 +57,7 @@ function Register({setUser}) {
       setUser(mutationResult.data.register)
       setr(sessionStorage.setItem("refreshToken", mutationResult.data.register.refreshToken))
       seta(sessionStorage.setItem("accessToken", mutationResult.data.register.token))
-      history('/crypto')
+      history('/cryptos')
   }})
   function handleChange(e) {
     updateFormData({
@@ -129,7 +129,7 @@ function Register({setUser}) {
                       name="username"
                       onChange={handleChange}
                       type="text"
-                      className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
+                      className="bg-yellow-100 text-black  lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
                     />
                   </span>
                 </label>
@@ -142,7 +142,7 @@ function Register({setUser}) {
                       name="email"
                       onChange={handleChange}
                       type="text"
-                      className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
+                      className="bg-yellow-100 text-black  lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
                     />
                   </span>
                 </label>
@@ -157,7 +157,7 @@ function Register({setUser}) {
                       name="password"
                       onChange={handleChange}
                       type="password"
-                      className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
+                      className="bg-yellow-100 text-black  lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
                     />
                   </span>
                 </label>
@@ -173,7 +173,7 @@ function Register({setUser}) {
                       name="passwordc"
                       onChange={handleChange}
                       type="password"
-                      className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
+                      className="bg-yellow-100 text-black lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-3 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400"
                     />
                   </span>
                 </label>

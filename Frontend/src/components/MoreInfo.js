@@ -264,7 +264,7 @@ function MoreInfo({
                 onClick={handleClick}
                 className=" flex justify-center bg-pink-500 hover:bg-orange-500 transition-all text-white p-1   rounded-full uppercase animate-bounce"
               >
-                <span className="my-auto p-2">Add To Portfolio </span>
+                <span className="my-auto p-2">Analyze </span>
                 <span className="h-12 w-12 p-1 my-auto bg-purple-500  block  rounded-full  ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

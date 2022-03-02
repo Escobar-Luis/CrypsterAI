@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Navigate, Outlet} from 'react-router-dom'
-
-function PublicRoute({isLogged}) {
+import AuthContext from "../context/AuthContext";
+function PublicRoute() {
+  let { isLogged} = useContext(AuthContext);
   return isLogged ? <Navigate to='/dashboard'/> :<Outlet/>
 }
 

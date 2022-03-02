@@ -70,3 +70,39 @@ html{
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.navbar-active-site-wrapper {
+  animation: navbar-active 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-fill-mode: forwards;
+  @apply fixed w-full h-screen overflow-y-hidden bg-space bg-center bg-cover placeholder:pl-4 rounded-[30px] border;
+}
+
+.navbar-deactive-site-wrapper {
+  animation: navbar-deactive 0.5s;
+  animation-fill-mode: forwards;
+  @apply fixed w-full h-screen overflow-y-hidden bg-space bg-center bg-cover;
+}
+
+.active-navbar-body {
+  @apply overflow-y-hidden md:overflow-y-auto;
+}
+
+@keyframes navbar-active {
+  0% {
+      @apply left-10 top-0;
+  }
+  100% {
+      @apply left-72 rotate-6 top-10;
+      box-shadow: -30px 30px 5px rgba(26,27,60);
+  }
+}
+
+@keyframes navbar-deactive {
+  0% {
+      @apply left-72 rotate-6 top-10 rounded-[30px];
+      box-shadow: -30px 30px 5px rgbargba(26,27,60);
+  }
+  100% {
+      @apply left-0 top-0 rounded-[15px];
+  }
+}

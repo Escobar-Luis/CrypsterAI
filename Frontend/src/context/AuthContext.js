@@ -9,6 +9,8 @@ export default AuthContext;
 export const AuthProvider = ({ children }) => {
   // State of userData
   const [userData, setUserData] = useState(null);
+  const [isLogged, setIsLogged] = useState(sessionStorage.getItem("accessToken") !== null ? true : false)
+
   // Getting User Access Tokens
   const [accessToken, setAccessToken] = useState(() =>
     sessionStorage.getItem("accessToken")
@@ -52,6 +54,9 @@ const[openDos, setOpenDos]=useState(false)
     refetch:refetch,
     handlefirst: handlefirst,
     first: first,
+    isLogged:isLogged,
+    setIsLogged:setIsLogged
+
 
   };
 
