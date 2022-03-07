@@ -1,4 +1,4 @@
-#!/Users/administrator/Desktop/Projects/CrypsterAI/Backend/venv/bin/python3
+#!/Users/administrator/Desktop/CrypsterAI/Backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
