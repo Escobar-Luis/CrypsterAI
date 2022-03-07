@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@z%^a=b!8+-e0@5g5e$jv)+fgqwwnhs08im_1d%tc9!q-z!k50'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['crypsterai.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
