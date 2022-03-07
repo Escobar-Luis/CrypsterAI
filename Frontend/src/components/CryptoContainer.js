@@ -1,31 +1,41 @@
-import React, { useState,useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
 
 import CryptoCard from "./CryptoCard";
 import MoreInfo from "./MoreInfo";
 import AuthContext from "../context/AuthContext";
-function CryptoCardContainer({userSeeing, userPortfolio, openDash, setOpenDash, brolic, setshown, popout, setclick, setSeen, setoptimizerForm, setChartForm, chartForm,optimizerForm}) {
-  let {name, user} =useContext(AuthContext)
+function CryptoCardContainer({
+  userSeeing,
+  userPortfolio,
+  openDash,
+  setOpenDash,
+  brolic,
+  setshown,
+  popout,
+  setclick,
+  setSeen,
+  setoptimizerForm,
+  setChartForm,
+  chartForm,
+  optimizerForm,
+}) {
+  let { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [more, setmore] = useState(null);
   const [search, setsearch] = useState("");
   const [cryptoData, setCryptoData] = useState(null);
-  const history= useNavigate()
 
-const portfolioVisibleCryptos = userPortfolio?.filter((c) => {
-  return c.id.includes(search.toLowerCase());
-});
-const not = cryptoData?.filter((c) =>{
-  return !userPortfolio?.some((f) => {
-    return f.id === c.id
-  })
-})
-const allVisibleCryptos = not?.filter((c) => {
-  return c.id.includes(search.toLowerCase()) ;
-});
+  const portfolioVisibleCryptos = userPortfolio?.filter((c) => {
+    return c.id.includes(search.toLowerCase());
+  });
+  const not = cryptoData?.filter((c) => {
+    return !userPortfolio?.some((f) => {
+      return f.id === c.id;
+    });
+  });
+  const allVisibleCryptos = not?.filter((c) => {
+    return c.id.includes(search.toLowerCase());
+  });
 
-
-  console.log(user)
   useEffect(() => {
     fetch(
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false"
@@ -42,23 +52,29 @@ const allVisibleCryptos = not?.filter((c) => {
         .then((d) => setCryptoData(d))
         .catch((e) => console.log(e));
     }, 10000);
-    return ()=>clearInterval(interval)
-
+    return () => clearInterval(interval);
   }, []);
 
- 
   return (
     // <div className='container-full flex items-center'>
-    <div className={openDash? "": "bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen overflow-hidden "}>
-    {/* <div className=" flex justify-center">
+    <div
+      className={
+        openDash
+          ? ""
+          : "bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen overflow-hidden "
+      }
+    >
+      {/* <div className=" flex justify-center">
       <button onClick={logout} className="mt-5 p-3 rounded-full shadow-xl shadow-black border bg-yellow-500 border-blue-500 hover:bg-yellow-200">Logout</button>
     </div> */}
-    <div className="flex justify-center ">
+      <div className="flex justify-center ">
         <input
           className={
             open
               ? "hidden"
-              : openDash? "mt-5 p-3 rounded-full shadow-xl shadow-black border border-blue-500" : " p-3 rounded-full shadow-xl shadow-black border border-blue-500"
+              : openDash
+              ? "mt-5 p-3 rounded-full shadow-xl shadow-black border border-blue-500"
+              : " p-3 rounded-full shadow-xl shadow-black border border-blue-500"
           }
           type="search"
           value={search}
@@ -75,20 +91,19 @@ const allVisibleCryptos = not?.filter((c) => {
       >
         {cryptoData == null
           ? null
-          : userSeeing ==='portfolio' ?
-          portfolioVisibleCryptos.map((c) => {
-            return (
-              <CryptoCard
-                key={c.id}
-                crypto={c}
-                open={open}
-                setOpen={setOpen}
-                setmore={setmore}
-              />
-            );
-          })
-          :
-          allVisibleCryptos.map((c) => {
+          : userSeeing === "portfolio"
+          ? portfolioVisibleCryptos.map((c) => {
+              return (
+                <CryptoCard
+                  key={c.id}
+                  crypto={c}
+                  open={open}
+                  setOpen={setOpen}
+                  setmore={setmore}
+                />
+              );
+            })
+          : allVisibleCryptos.map((c) => {
               return (
                 <CryptoCard
                   key={c.id}
@@ -99,7 +114,24 @@ const allVisibleCryptos = not?.filter((c) => {
                 />
               );
             })}
-        <MoreInfo chartForm={chartForm} optimizerForm={optimizerForm} setChartForm={setChartForm} setoptimizerForm={setoptimizerForm} setSeen={setSeen} setclick={setclick} popout={popout} setshown={setshown} brolic={brolic} setOpen={setOpen} setOpenDash={setOpenDash} openDash={openDash}key={more? more.name: null} open={open} onClose={() => setOpen(false)} more={more} />
+        <MoreInfo
+          chartForm={chartForm}
+          optimizerForm={optimizerForm}
+          setChartForm={setChartForm}
+          setoptimizerForm={setoptimizerForm}
+          setSeen={setSeen}
+          setclick={setclick}
+          popout={popout}
+          setshown={setshown}
+          brolic={brolic}
+          setOpen={setOpen}
+          setOpenDash={setOpenDash}
+          openDash={openDash}
+          key={more ? more.name : null}
+          open={open}
+          onClose={() => setOpen(false)}
+          more={more}
+        />
       </div>
     </div>
   );

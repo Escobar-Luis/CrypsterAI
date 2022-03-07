@@ -8,6 +8,7 @@ html{
   overflow-x: hidden;
 }
 
+
 .pt-sans {
   font-family: "PT Sans", sans-serif;
 }
@@ -74,13 +75,13 @@ html{
 .navbar-active-site-wrapper {
   animation: navbar-active 1s cubic-bezier(0.34, 1.56, 0.64, 1);
   animation-fill-mode: forwards;
-  @apply fixed w-full h-screen overflow-y-hidden bg-space bg-center bg-cover placeholder:pl-4 rounded-[30px] border;
+  @apply fixed w-full h-screen overflow-y-hidden bg-space bg-center  placeholder:pl-4 rounded-[30px] border;
 }
 
 .navbar-deactive-site-wrapper {
   animation: navbar-deactive 0.5s;
   animation-fill-mode: forwards;
-  @apply fixed w-full h-screen overflow-y-hidden bg-space bg-center bg-cover;
+  @apply fixed w-full h-screen overflow-y-hidden bg-space bg-center rounded-[30px] border;
 }
 
 .active-navbar-body {
@@ -105,4 +106,14 @@ html{
   100% {
       @apply left-0 top-0 rounded-[15px];
   }
+}
+
+.rank-price{
+  border: 6px solid transparent;
+  padding: 20px;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 30px;
+    position: relative;
+    background-image: linear-gradient(to top right, #181930 50%, #3b3c58), linear-gradient(145deg, transparent 75%, #3b4065);
 }

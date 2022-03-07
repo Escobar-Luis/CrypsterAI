@@ -27,7 +27,7 @@ function MoreInfo({
     more
       ? {
           name: more.id,
-          user: user? user.pk:null ,
+          user: user ? user.pk : null,
         }
       : null
   );
@@ -46,35 +46,35 @@ function MoreInfo({
     },
   });
   function handleClick() {
-    Object.freeze();
-    console.log(formData);
-    if (
-      user?.tokenSet.filter((c) => {
-        return more ? c.name === more.id : null;
-      }).length > 0
-    ) {
-      return alert("Coin already in Portfolio"), setOpen(false);
-    }
-    createToken({
-      variables: {
-        name: formData.name,
-        userId: formData.user,
-      },
-    });
+    // Object.freeze();
+    // console.log(formData);
+    // if (
+    //   user?.tokenSet.filter((c) => {
+    //     return more ? c.name === more.id : null;
+    //   }).length > 0
+    // ) {
+    //   return alert("Coin already in Portfolio"), setOpen(false);
+    // }
+    // createToken({
+    //   variables: {
+    //     name: formData.name,
+    //     userId: formData.user,
+    //   },
+    // });
     refetch();
     handlefirst(more);
     history("/dashboard");
     setOpenDash(false);
     popout(more);
     setclick(true);
-    setSeen("overview");
+    setSeen("sentiment");
     setChartForm({ ...chartForm, ticker: `${more.symbol.toUpperCase()}-USD` });
     setoptimizerForm({
       ...optimizerForm,
       ticker: `${more.symbol.toUpperCase()}-USD`,
     });
   }
-  console.log(more?.description.en.length)
+  console.log(more?.description.en.length);
   if (!open) return null;
 
   return ReactDom.createPortal(
@@ -226,13 +226,23 @@ function MoreInfo({
               <span className="price font-bold text-2xl xs:text-3xl  text-gray-700">
                 {more.symbol.toUpperCase()}
               </span>
-              {more.description.en.length < 10? <p className='text-2xl  mt-5 text-gray-700'>Sorry, No Description Found on {more.id.toUpperCase()}</p> : more.description.en.length < 100?
-               <p className='text-lg mt-20 xs:text-3xl sm:text-lg sm:mt-5 text-gray-700'>
-               {more.description.en.substr(0, 300)}...
-             </p> : more.description.en.length < 200? <p className='text-md xs:text-[1.5rem]  mt-5 text-gray-700'>
-               {more.description.en.substr(0, 300)}...
-             </p>:  <p className='text-sm xs:text-xl  mt-5 text-gray-700'>
-               {more.description.en.substr(0, 300)}...</p>}
+              {more.description.en.length < 10 ? (
+                <p className="text-2xl  mt-5 text-gray-700">
+                  Sorry, No Description Found on {more.id.toUpperCase()}
+                </p>
+              ) : more.description.en.length < 100 ? (
+                <p className="text-lg mt-20 xs:text-3xl sm:text-lg sm:mt-5 text-gray-700">
+                  {more.description.en.substr(0, 300)}...
+                </p>
+              ) : more.description.en.length < 200 ? (
+                <p className="text-md xs:text-[1.5rem]  mt-5 text-gray-700">
+                  {more.description.en.substr(0, 300)}...
+                </p>
+              ) : (
+                <p className="text-sm xs:text-xl  mt-5 text-gray-700">
+                  {more.description.en.substr(0, 300)}...
+                </p>
+              )}
             </div>
             <div className="filter   mt-5  ">
               <div className="category  ">

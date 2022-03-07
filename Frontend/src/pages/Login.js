@@ -52,6 +52,7 @@ function Login({ setUser }) {
         "accessToken",
         mutationResult.data.tokenAuth.token
       );
+      setIsLogged(true)
       // isLoggedInVar(true)
       history("/dashboard");
     },

@@ -6,8 +6,9 @@ import PublicRoute from "./utils/PublicRoute";
 import Login from "./pages/Login";
 import { useState, useEffect,useContext } from "react";
 import CryptoContainer from "./components/CryptoContainer";
-import { AuthProvider} from "./context/AuthContext";
 import Dashboard from "./pages/Dashboard";
+import { AuthProvider} from "./context/AuthContext";
+import { OptionsProvider} from "./context/OptionsContext";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     // <div className=" App bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen">
     <div className=" App font-whole  ">
         <AuthProvider>
+          <OptionsProvider>
       {/* <AuthProvider> */}
       <Routes>
         {/* for the route, it doesn't want a child but a child element  */}
@@ -28,7 +30,7 @@ function App() {
 
         <Route element={<PublicRoute  />}>
           <Route path="register" element={<Register setUser={setUser} />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login setUser={setUser} />} />
         </Route>
         <Route element={<PrivateRoute  />}>
               <Route
@@ -41,6 +43,7 @@ function App() {
               />
             </Route> 
       </Routes>
+      </OptionsProvider>
       </AuthProvider>
     </div>
   );

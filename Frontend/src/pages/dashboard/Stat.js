@@ -21,10 +21,10 @@ function Stat({c, shown}) {
       return `${gauge -10} 1 ${gauge + 100} 1 ${gauge -10} 360`;
     }
     return (
-        <div className="relative flex items-center justify-center bg-white rounded-[10px] bg-opacity-[0.02] w-[50px] h-[50px]">
+        <div className="  relative flex items-center justify-center bg-white rounded-[10px] bg-opacity-[0.02] w-[8rem] h-[8rem]   ">
         {/* <div className="relative flex items-center justify-center bg-white rounded-[10px] bg-opacity-[0.02] w-[160px] h-[175px]"> */}
             <svg
-      className="absolute h-[50px] w-[50px] text-transparent"
+      className="absolute  text-transparent"
       // className="absolute h-[138] w-[138px] text-transparent"
       viewBox="0 0 152 152"
       fill="none"
@@ -50,14 +50,14 @@ function Stat({c, shown}) {
         strokeDashoffset="0"
       />
     </svg>
-    <div className="flex flex-col items-center justify-center pt-3 text-white ">
+    <div className="grid grid-cols-1 items-center gap-2 justify-center pt-3 text-white ">
     {/* <div className="flex flex-col items-center justify-center pt-3 text-white "> */}
-      <span className="uppercase text-[0.5rem] ">
+      <span className="uppercase text-center text-[0.70rem] ">
       {/* <span className="uppercase text-[0.8rem] "> */}
         {c.title }
       </span>
-      <span className="leading-tight text-3xl" >
-        { c.value }
+      <span className="leading-tight text-center text-[1.5rem]" >
+        { parseFloat(c.value).toFixed(2) }
       </span>
       
     </div>

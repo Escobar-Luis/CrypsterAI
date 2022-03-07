@@ -3,20 +3,20 @@ import React from 'react'
 function LengthParam(props) {
   
     return (
-        <>
-      <div  onClick={() => props.setopenDos(!props.openDos)} className="hover:cursor-pointer flex items-center  border-l-2 p-3 w-auto rounded-full ">
-        <a href="#" className="text-2xl">
-          {props.icon}
-        </a>
-        <div className="flex  flex-col ml-3 items-start mx-[100px]">
-      <h1 className="font-bold text-xl ">{props.option}</h1>
-      <p className="w-max">{props.name}</p>
+      <div className='grid grid-cols-1 border-l-2 rounded-full'>
+      <div  onClick={() => props.setopenDos(!props.openDos)} className="hover:cursor-pointer flex  items-center   p-3 w-auto  gap-3 ">
+      <div className="flex">
+        <h1 className="text-sm">{props.icon}</h1>
+      </div>
+      <div className="flex  flex-col justify-start items-start mx-auto">
+    <h1 className="font-bold text-sm ">{props.option}</h1>
+    <p className="w-20">{props.name}</p>
+    </div>
+    </div>
+      <div className=" w-10">
+      {props.openDos && props.children}
       </div>
       </div>
-        <div className=" flex mr-2 items-center">
-        {props.openDos && props.children}
-        </div>
-      </>
     );}
 
 export default LengthParam

@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
-function RightPane({ shown, shownmkt, seen}) {
-  
+function RightPane({ shown, shownmkt, seen }) {
   // console.log(form?.map((x) =>{console.log(x)}))
-  if (shown && seen=="overview") {
+  if (shown && seen == "sentiment") {
     console.log(shown);
-    
+
     const m = {
       athC: shown.market_data.ath_change_percentage.usd,
       capC: shown.market_data.market_cap_change_percentage_24h.usd,
@@ -21,39 +20,51 @@ function RightPane({ shown, shownmkt, seen}) {
     console.log(ath);
 
     return (
-      <div className="w-64  space-y-8">
-        <div className="hidden">{shown.symbol}</div>
-        <div className="flex justify-between items-end">
-          <div className="flex flex-col space-y-2">
-            <span className="text-xs text-white"> Bullish Social Sentiment </span>
-            <div className="relative w-36 h-1.5">
-              <div className="w-36 absolute left-0 top-0 rounded-full h-1.5 bg-gray-600/20"></div>
-              <div
-                className="absolute left-0 top-0 bg-green rounded-full h-1.5"
-                style={{ width: `${shown.sentiment_votes_up_percentage}%` }}
-              />
+      <div className="grid grid-cols-2 py-3 gap-5 place-items-center w-full">
+        {/* <div className="hidden">{shown.symbol}</div> */}
+        <div className="flex justify-between items-center w-fit border-black border-2 rounded-xl p-2">
+          <div className="grid grid-cols-1 space-y-2 ">
+            <span className="text-xs text-white w-full">
+              {" "}
+              Bullish Social Sentiment{" "}
+            </span>
+            <div className=" text-sm font-medium text-white whitespace-nowrap">
+              <div className="relative w-[6rem] h-1.5  ">
+                {/* <div className="relative w-36 h-1.5"> */}
+                <div className="w-[6rem] absolute left-0 top-0 rounded-full h-1.5  bg-gray-600/20"></div>
+                {/* <div className="w-36 absolute left-0 top-0 rounded-full h-1.5 bg-gray-600/20"></div> */}
+                <div
+                  className="absolute left-0 top-0 bg-green rounded-full h-1.5"
+                  style={{ width: `${shown.sentiment_votes_up_percentage}%` }}
+                />
+              </div>
+              {/* <div className="pl-4 text-lg font-medium text-white whitespace-nowrap"> */}
+              {shown.sentiment_votes_up_percentage}%
             </div>
           </div>
-          <div className="pl-4 text-lg font-medium text-white whitespace-nowrap">
-            {shown.sentiment_votes_up_percentage}%
-          </div>
         </div>
-        <div className="flex justify-between items-end">
-          <div className="flex flex-col space-y-2">
-            <span className="text-xs text-white"> Bearish Social Sentiment </span>
-            <div className="relative w-36 h-1.5">
-              <div className="w-36 absolute left-0 top-0 rounded-full h-1.5 bg-gray-600/20"></div>
-              <div
-                className="absolute left-0 top-0 bg-red rounded-full h-1.5"
-                style={{ width: `${shown.sentiment_votes_down_percentage}%` }}
-              />
+        <div className="flex justify-between items-center w-fit border-black border-2 rounded-xl p-2">
+          <div className="grid grid-cols-1 space-y-2">
+            <span className="text-xs text-white w-full">
+              {" "}
+              Bearish Social Sentiment{" "}
+            </span>
+            <div className=" text-sm font-medium text-white whitespace-nowrap">
+              {/* <div className="pl-4 text-lg font-medium text-white whitespace-nowrap"> */}
+              <div className="relative w-[6rem] h-1.5">
+                {/* <div className="relative w-36 h-1.5"> */}
+                <div className="w-[6rem] absolute left-0 top-0 rounded-full h-1.5 bg-gray-600/20"></div>
+                {/* <div className="w-36 absolute left-0 top-0 rounded-full h-1.5 bg-gray-600/20"></div> */}
+                <div
+                  className="absolute left-0 top-0 bg-red rounded-full h-1.5"
+                  style={{ width: `${shown.sentiment_votes_down_percentage}%` }}
+                />
+              </div>
+              {shown.sentiment_votes_down_percentage}%
             </div>
           </div>
-          <div className="pl-4 text-lg font-medium text-white whitespace-nowrap">
-            {shown.sentiment_votes_down_percentage}%
-          </div>
         </div>
-        <div className="flex justify-between items-end">
+        {/* <div className="flex justify-between items-end">
           <div className="flex flex-col space-y-2">
             <span className="text-xs text-white"> Change Since ATH </span>
             <div className="relative w-36 h-1.5">
@@ -82,15 +93,13 @@ function RightPane({ shown, shownmkt, seen}) {
           <div className="pl-4 text-lg font-medium text-white whitespace-nowrap">
             {shown.market_data.price_change_percentage_30d.toFixed(2)}%
           </div>
-        </div>
-        
-        
+        </div> */}
       </div>
     );
-  }
-  else if (seen==='smac'){return null}
-  else {
-    return null
+  } else if (seen === "smac") {
+    return null;
+  } else {
+    return null;
   }
 }
 

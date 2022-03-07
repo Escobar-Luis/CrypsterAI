@@ -4,11 +4,21 @@ import HighchartsReact from "highcharts-react-official";
 import { gql, useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 
-
-function Chart({ s, shown, selctedResultSma2, selctedResultSma1, setChartForm, chartForm, c, su, sd, d, chartClick, results, loading}) {
-
-  
-
+function Chart({
+  s,
+  shown,
+  selctedResultSma2,
+  selctedResultSma1,
+  setChartForm,
+  chartForm,
+  c,
+  su,
+  sd,
+  d,
+  chartClick,
+  results,
+  loading,
+}) {
   require("highcharts/modules/annotations")(Highcharts);
   function smaSignal(data) {
     let labels = [];
@@ -44,7 +54,7 @@ function Chart({ s, shown, selctedResultSma2, selctedResultSma1, setChartForm, c
     return labels;
   }
 
-  const Toast = (Swal).mixin({
+  const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
@@ -232,25 +242,36 @@ function Chart({ s, shown, selctedResultSma2, selctedResultSma1, setChartForm, c
     //     color: 'white'
     // }]
   };
-  console.log(loading)
+  console.log(loading);
   return (
-    <div>
-        {shown?
+    <div className="overflow-x-hidden">
+      {shown ? (
         <>
-      <button
-        className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200"
-        onClick={s}
-      >
-        SMA Optimization
-      </button>
-      <div className="absolute flex  justify-center -translate-x-1/3 left-1/3 top-[10rem] p-4">
-      <img
-              className={ c? "shadow-2xl shadow-blue  w-[20rem] h-[20rem] rounded-full  bg-black hidden ": "shadow-2xl shadow-blue  w-[380px] h-auto rounded-full  bg-black "}
+          <button
+            className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200"
+            onClick={s}
+          >
+            SMA Optimization
+          </button>
+          {/* <div className="absolute flex  justify-center -translate-x-1/3 left-1/3 top-[10rem] p-4">
+            <img
+              className={
+                c
+                  ? "shadow-2xl shadow-blue  w-[20rem] h-[20rem] rounded-full  bg-black hidden "
+                  : "shadow-2xl shadow-blue  w-[380px] h-auto rounded-full  bg-black "
+              }
               src={shown ? shown.image.large : null}
               alt=""
-            /></div></>: <div className="absolute flex  justify-center -translate-x-1/2 left-1/3 top-[15rem] p-4">
-  
-         <h1 className="font-bold text-[100px] animate-bounce mt-3">Select Token</h1></div>}
+            />
+          </div> */}
+        </>
+      ) : (
+        <div className="absolute flex  justify-center -translate-x-1/2 left-1/3 top-[15rem] p-4">
+          <h1 className="font-bold text-[100px] animate-bounce mt-3">
+            Select Token
+          </h1>
+        </div>
+      )}
       {/* {results? 
       <button
         onClick={chartClick}
