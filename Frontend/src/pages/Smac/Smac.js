@@ -42,10 +42,9 @@ function Smac({
       const x = mutationResult.data.smaOptimizer.res;
       console.log(x);
       const y = x[0];
-      setChartForm({ ...chartForm, sma1: y.sma1, sma2: y.sma2 });
+      setChartForm({ ...chartForm,date:optimizerForm.Date, sma1: y.sma1, sma2: y.sma2 });
       handleOptimizer(x);
       chartClick();
-
       setclick(false);
 
       setSeen("optimizer");
@@ -101,7 +100,7 @@ function Smac({
           }
         >
           <input
-            className="text-black "
+            className="text-black text-[0.6rem] "
             name="date"
             onChange={handleChange}
             type="Date"
@@ -117,7 +116,7 @@ function Smac({
         >
           <input
             name="length"
-            className="text-black"
+            className="text-black text-[0.6rem]"
             onChange={handleChange}
             type="number"
             value={optimizerForm.length}

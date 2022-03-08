@@ -9,12 +9,12 @@ function FreqParam(props) {
       <div className="flex">
         <h1 className="text-sm">{props.icon}</h1>
       </div>
-      <div className="flex  flex-col justify-start items-start mx-auto">
-    <h1 className="font-bold text-sm ">{props.option}</h1>
-    <p className="w-20">{props.name}</p>
+      <div className="flex  flex-col justify-start items-start ">
+    <h1 className="font-bold text-xs ">{props.option}</h1>
+    <p className="w-10 text-[0.6rem]">{props.name}</p>
     </div>
     </div>
-      <div className=" ">
+      <div className=" flex justify-center items-center">
       {props.open && props.children}
       </div>
       </div>

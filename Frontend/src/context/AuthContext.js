@@ -7,23 +7,19 @@ const AuthContext = createContext();
 export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
-  // State of userData
-  const [userData, setUserData] = useState(null);
-  const [isLogged, setIsLogged] = useState(sessionStorage.getItem("accessToken") !== null ? true : false)
-
-  // Getting User Access Tokens
-  const [accessToken, setAccessToken] = useState(() =>
-    sessionStorage.getItem("accessToken")
-      ? sessionStorage.getItem("accessToken")
-      : null
+  const history = useNavigate();
+  /**------------------------------------------------------------------------
+   *                         Check for USER
+   *------------------------------------------------------------------------**/
+  // Check if user exists if the system has an accessToken in the sessions container
+  const [isLogged, setIsLogged] = useState(
+    sessionStorage.getItem("accessToken") !== null ? true : false
   );
-  const[first, setfirst]= useState(null)
-  // Decode the access Token so I can get username as a workaround for not being able to get his pk
-  const user = sessionStorage.getItem("accessToken")
+    // Decode the access Token so I can get username as a workaround for not being able to get his pk
+  let user = sessionStorage.getItem("accessToken")
     ? jwt_decode(sessionStorage.getItem("accessToken")).username
     : null;
-
-  // This query gets the users information and saves it to the cache
+  // If we do, then we decode the token to get username and search for that user in our database to then get there details
   const GET_USER = gql`
     query User($username: String!) {
       users(username: $username) {
@@ -39,28 +35,127 @@ export const AuthProvider = ({ children }) => {
       }
     }
   `;
-  const {data, refetch } = useQuery(GET_USER, {
+  const { data, refetch } = useQuery(GET_USER, {
     variables: { username: user },
   });
+  console.log(user);
+  /**------------------------------------------------------------------------
+   *                         Register User
+   *------------------------------------------------------------------------**/
+  // User Registration
 
-function handlefirst(c){
-  setfirst(c)
-}
-const[openUno, setOpenUno]=useState(false)
-const[openDos, setOpenDos]=useState(false)
- 
+  const CREATE_USER = gql`
+    mutation register(
+      $email: String!
+      $username: String!
+      $password1: String!
+      $password2: String!
+    ) {
+      register(
+        email: $email
+        username: $username
+        password1: $password1
+        password2: $password2
+      ) {
+        success
+        errors
+        token
+        refreshToken
+      }
+    }
+  `;
+
+  const [createUser, {}] = useMutation(CREATE_USER, {
+    update: (proxy, mutationResult) => {
+      if (mutationResult.data.register.errors) {
+        for (const [key, value] of Object.entries(
+          mutationResult.data.register.errors
+        )) {
+          for (const [k, v] of Object.entries(value[0])) {
+            if (
+              v.includes("_") ||
+              v == "unique" ||
+              v === "This field is required." ||
+              v === "required" ||
+              v === "invalid"
+            ) {
+              return null;
+            }
+            alert(`${v}`);
+          }
+        }
+      }
+      sessionStorage.setItem(
+        "refreshToken",
+        mutationResult.data.register.refreshToken
+      );
+      sessionStorage.setItem("accessToken", mutationResult.data.register.token);
+      setIsLogged(true);
+      history("/dashboard");
+    },
+  });
+  /**------------------------------------------------------------------------
+   *                         Login User
+   *------------------------------------------------------------------------**/
+  const LOG_IN = gql`
+    mutation tokenAuth($username: String!, $password: String!) {
+      tokenAuth(username: $username, password: $password) {
+        success
+        errors
+        token
+        refreshToken
+        user {
+          username
+          pk
+          id
+          email
+        }
+      }
+    }
+  `;
+  const [logIn, { loading }] = useMutation(LOG_IN, {
+    update: (proxy, mutationResult) => {
+      if (mutationResult.data.tokenAuth.errors) {
+        for (const [key, value] of Object.entries(
+          mutationResult.data.tokenAuth.errors
+        )) {
+          for (const [k, v] of Object.entries(value[0])) {
+            alert(`${k} : ${v}`);
+            return null;
+          }
+        }
+      }
+
+      sessionStorage.setItem(
+        "refreshToken",
+        mutationResult.data.tokenAuth.refreshToken
+      );
+      sessionStorage.setItem(
+        "accessToken",
+        mutationResult.data.tokenAuth.token
+      );
+      setIsLogged(true);
+      history("/dashboard");
+    },
+  });
+
+  const [first, setfirst] = useState(null);
+
+
+  function handlefirst(c) {
+    setfirst(c);
+  }
+
   let contextData = {
-    user: data?.users?.edges[0]?.node? data.users.edges[0].node: null,
-    refetch:refetch,
+    user: data?.users?.edges[0]?.node ? data.users.edges[0].node : null,
+    refetch: refetch,
     handlefirst: handlefirst,
     first: first,
-    isLogged:isLogged,
-    setIsLogged:setIsLogged
-
-
+    isLogged: isLogged,
+    setIsLogged: setIsLogged,
+    createUser: createUser,
+    logIn: logIn,
   };
-
-
 
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>

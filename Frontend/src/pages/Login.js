@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import pic from "../images/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
 import { Link } from "react-router-dom";
-import { useNavigate} from "react-router-dom";
-import { gql, useMutation } from "@apollo/client";
 import AuthContext from "../context/AuthContext";
-function Login({ setUser }) {
+function Login() {
   const [formData, updateFormData] = useState({ username: "", password: "" });
-  let { setIsLogged} = useContext(AuthContext);
+  let { setIsLogged, logIn } = useContext(AuthContext);
   function handleChange(e) {
     updateFormData({
       ...formData,
@@ -14,49 +12,6 @@ function Login({ setUser }) {
     });
   }
 
-  const history = useNavigate();
-  const LOG_IN = gql`
-    mutation tokenAuth($username: String!, $password: String!) {
-      tokenAuth(username: $username, password: $password) {
-        success
-        errors
-        token
-        refreshToken
-        user {
-          username
-          pk
-          id
-          email
-        }
-      }
-    }
-  `;
-  const [logIn, { loading }] = useMutation(LOG_IN, {
-    update: (proxy, mutationResult) => {
-      if (mutationResult.data.tokenAuth.errors) {
-        for (const [key, value] of Object.entries(
-          mutationResult.data.tokenAuth.errors
-        )) {
-          for (const [k, v] of Object.entries(value[0])) {
-            alert(`${k} : ${v}`);
-            return null;
-          }
-        }
-      }
-      setUser(mutationResult.data.tokenAuth.user);
-      sessionStorage.setItem(
-        "refreshToken",
-        mutationResult.data.tokenAuth.refreshToken
-      );
-      sessionStorage.setItem(
-        "accessToken",
-        mutationResult.data.tokenAuth.token
-      );
-      setIsLogged(true)
-      // isLoggedInVar(true)
-      history("/dashboard");
-    },
-  });
   function handleChange(e) {
     updateFormData({
       ...formData,
@@ -65,7 +20,6 @@ function Login({ setUser }) {
   }
 
   function handleClick() {
-    console.log(formData);
     logIn({
       variables: {
         username: formData.username,
@@ -73,32 +27,11 @@ function Login({ setUser }) {
       },
     });
   }
-  // function handleClick() {
-  //   console.log(formData);
-  // axiosInstance
-  //   .post(`token/`, {
-  //     email: formData.email,
-  //     password: formData.password,
-  //   })
-  //   .then((res) =>{
-  //     console.log(jwt_decode(res.data.access))
-  //     localStorage.setItem('access_token',res.data.access)
-  //     localStorage.setItem('refresh_token',res.data.refresh)
-  //     axiosInstance.defaults.headers['Authorization'] =
-  //       'JWT ' + localStorage.getItem('access_token')
 
-  // console.log(r)
-  // console.log(r.data)
-
-  // }
-  // if (sessionStorage.getItem("accessToken") !== null) {
-  //   return <Navigate to="protected/dashboard" />;
-  // }
   return (
     <div className="bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 overflow-x-hidden lg:overflow-x-auto lg:overflow-hidden flex items-center justify-center h-screen lg:h-screen ">
-      {/* this contains the group state */}
       <div className="container w-full lg:w-4/5  lg:bg-slate-300  lg:h-screen-75 lg:border border-gray-300 rounded-lg flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between group">
-        {/* /**========================================================================
+        {/* /**========================åå================================================
          *                           SECTION Product Side
          *========================================================================** */}
         <div className="w-full lg:w-1/2  lg:h-full mt-32 lg:mt-0 lg:bg-purple-600 flex relative order-2 lg:order-1">
@@ -138,7 +71,6 @@ function Login({ setUser }) {
                   <span className="block text-lg  tracking-wide">Username</span>
                   <span className="block">
                     <input
-                    
                       name="username"
                       onChange={handleChange}
                       type="text"
@@ -171,7 +103,6 @@ function Login({ setUser }) {
                     <input type="checkbox" name="" id="" />
                     <span className="block  tracking-wide">Remember me</span>
                   </label>
-                  {/* <Link className=" text-gray-800 tracking-wide inline-block border-b border-gray-300 hover:text-purple-500" to='/'>Forgot Password?</Link> */}
                 </div>
               </div>
               {/* <!-- form element --> */}
@@ -191,7 +122,8 @@ function Login({ setUser }) {
               >
                 Don't have an account?
               </Link>
-              <Link onClick={()=>setIsLogged(true)}
+              <Link
+                onClick={() => setIsLogged(true)}
                 className=" tracking-wide  flex justify-center border-b border-gray-300 hover:text-purple-500"
                 to="/cryptos"
               >

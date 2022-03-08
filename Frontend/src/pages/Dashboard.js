@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import LeftPane from "./dashboard/LeftPane";
-import jwt_decode from "jwt-decode";
 import RightPane from "./dashboard/RightPane";
 import { useNavigate } from "react-router-dom";
 import TopStats from "./dashboard/TopStats";
@@ -11,7 +10,6 @@ import AuthContext from "../context/AuthContext";
 import Dock from "./dashboard/Dock";
 import CryptoCardPortal from "./CryptoCardPortal";
 import Smac from "./Smac/Smac";
-import moment from "moment";
 import Navbar from "../components/Navbar";
 import Wrapper from "../components/Wrapper";
 import Title from "../components/Title";
@@ -116,17 +114,29 @@ function Dashboard() {
       setd(all);
     },
   });
+  Date.prototype.yyyymmdd = function () {
+    var mm = this.getMonth() + 1; // getMonth() is zero-based
+    var dd = this.getDate();
 
+    return [
+      this.getFullYear() - 1,
+      (mm > 9 ? "" : "0") + mm,
+      (dd > 9 ? "" : "0") + dd,
+    ].join("-");
+  };
+
+  var date = new Date();
   const [chartForm, setChartForm] = useState({
-    date: moment(),
+    date: date.yyyymmdd(),
     sma1: 12,
     sma2: 29,
-    ticker: "",
+    ticker: shown ? `${shown.symbol.toUpperCase()}-USD` : " ",
   });
+
   const [optimizerForm, setoptimizerForm] = useState({
-    date: "Pick A Date",
-    length: "Pick A Length",
-    ticker: "",
+    date: date.yyyymmdd(),
+    length: 10,
+    ticker: shown ? `${shown.symbol.toUpperCase()}-USD` : " ",
   });
   console.log(optimizerForm);
 
@@ -207,8 +217,6 @@ function Dashboard() {
 
   let inPort = userC?.filter((c) => shown?.id === c?.name).length;
 
-  console.log(seen);
-
   return (
     <div
       className={
@@ -247,26 +255,26 @@ function Dashboard() {
           {/* <div className="flex w-full flex-col px-16 pt-6 relative"> */}
           {seen === "optimizer" ? (
             <>
-            <Smac
-              setSeen={setSeen}
-              results={results}
-              chartClick={chartClick}
-              c={c}
-              su={su}
-              sd={sd}
-              d={d}
-              optimizerForm={optimizerForm}
-              setoptimizerForm={setoptimizerForm}
-              chartForm={chartForm}
-              setChartForm={setChartForm}
-              selctedResultSma1={selctedResultSma1}
-              selctedResultSma2={selctedResultSma2}
-              setclick={setclick}
-              handleOptimizer={handleOptimizer}
-              shown={shown}
-            />
-           {/* <Dock setclick={setclick} setSeen={setSeen} /> */}
-           </>
+              <Smac
+                setSeen={setSeen}
+                results={results}
+                chartClick={chartClick}
+                c={c}
+                su={su}
+                sd={sd}
+                d={d}
+                optimizerForm={optimizerForm}
+                setoptimizerForm={setoptimizerForm}
+                chartForm={chartForm}
+                setChartForm={setChartForm}
+                selctedResultSma1={selctedResultSma1}
+                selctedResultSma2={selctedResultSma2}
+                setclick={setclick}
+                handleOptimizer={handleOptimizer}
+                shown={shown}
+              />
+              {/* <Dock setclick={setclick} setSeen={setSeen} /> */}
+            </>
           ) : (
             <>
               <TopStats shown={shown} seen={seen} />

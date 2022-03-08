@@ -92,7 +92,7 @@ function CryptoCardContainer({
         {cryptoData == null
           ? null
           : userSeeing === "portfolio"
-          ? portfolioVisibleCryptos.map((c) => {
+          ? portfolioVisibleCryptos?.map((c) => {
               return (
                 <CryptoCard
                   key={c.id}
@@ -103,7 +103,7 @@ function CryptoCardContainer({
                 />
               );
             })
-          : allVisibleCryptos.map((c) => {
+          : allVisibleCryptos?.map((c) => {
               return (
                 <CryptoCard
                   key={c.id}

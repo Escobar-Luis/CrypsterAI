@@ -1,84 +1,34 @@
 import React, { useContext, useState } from "react";
 import pic from "../images/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { gql, useMutation } from "@apollo/client";
+import AuthContext from "../context/AuthContext";
 
-function Register({setUser}) {
-  const [r, setr] = useState(useState(() =>
-  sessionStorage.getItem("refreshToken")
-    ? sessionStorage.getItem("refreshToken")
-    : null))
+function Register() {
+  let { createUser } = useContext(AuthContext);
 
-  const [a, seta] = useState(useState(() =>
-  sessionStorage.getItem("accessToken")
-    ? sessionStorage.getItem("accessToken")
-    : null))
-  
   const [formData, updateFormData] = useState({
     email: "",
     username: "",
     password: "",
     passwordc: "",
   });
-  const CREATE_USER = gql`
-    mutation register(
-      $email: String!
-      $username: String!
-      $password1: String!
-      $password2: String!
-    ) {
-      register(
-        email: $email
-        username: $username
-        password1: $password1
-        password2: $password2
-      ) {
-        success
-        errors
-        token
-        refreshToken
-      }
-    }
-  `;
-  const [createUser, { loading }] = useMutation(CREATE_USER, {
-    update: (proxy, mutationResult) => {
-      if(mutationResult.data.register.errors) {
-        for (const [key, value] of Object.entries(mutationResult.data.register.errors))
-         {
-          for (const [k, v] of Object.entries(value[0])){
-            if (v.includes("_") || v=="unique" || v==="This field is required." || v==="required" || v==="invalid"){
-              return null
-            }
-            alert(`${v}`)
-          }
-        }
-      }
-      setUser(mutationResult.data.register)
-      setr(sessionStorage.setItem("refreshToken", mutationResult.data.register.refreshToken))
-      seta(sessionStorage.setItem("accessToken", mutationResult.data.register.token))
-      history('/cryptos')
-  }})
+
   function handleChange(e) {
     updateFormData({
       ...formData,
       [e.target.name]: e.target.value.trim(),
     });
   }
-  const history = useNavigate();
-  
+
   function handleClick() {
-    console.log(formData);
     createUser({
       variables: {
-        'email': formData.email,
-        'username': formData.username,
-        'password1': formData.password,
-        'password2': formData.passwordc,
+        email: formData.email,
+        username: formData.username,
+        password1: formData.password,
+        password2: formData.passwordc,
       },
-    }
-    
-    );
+    });
   }
   return (
     <div className="bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 overflow-x-hidden lg:overflow-x-auto lg:overflow-hidden  flex items-center justify-center h-screen lg:h-screen ">
@@ -181,13 +131,7 @@ function Register({setUser}) {
               {/* <!-- form element --> */}
 
               <div className="form-element">
-                <div className="w-full lg:w-4/5  mx-auto flex items-center justify-between">
-                  {/* <label className="  tracking-wide flex items-center space-x-2 select-none">
-                    <input type="checkbox" name="" id="" />
-                    <span className="block  tracking-wide">Remember me</span>
-                  </label> */}
-                  {/* <Link className=" text-gray-800 tracking-wide inline-block border-b border-gray-300 hover:text-purple-500" to='/'>Forgot Password?</Link> */}
-                </div>
+                <div className="w-full lg:w-4/5  mx-auto flex items-center justify-between"></div>
               </div>
               {/* <!-- form element --> */}
 
@@ -206,7 +150,7 @@ function Register({setUser}) {
               >
                 Already have an account?
               </Link>
-              
+
               {/* <!-- form element --> */}
             </div>
           </div>

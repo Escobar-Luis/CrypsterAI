@@ -9,6 +9,7 @@ import pandas as pd
 import collections
 import itertools as it
 from collections import namedtuple
+import datetime
 class TokenType(DjangoObjectType):
     class Meta:
         model= Token

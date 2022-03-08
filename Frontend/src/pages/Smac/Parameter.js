@@ -6,13 +6,13 @@ function Parameter(props) {
   
   return (
       <>
-    <div  onClick={() => setOpen(!open)} className=" flex flex-col-2 items-center   p-3 w-auto rounded-full gap-2">
+    <div  onClick={() => setOpen(!open)} className=" flex flex-col-2 items-center   p-3 w-fit rounded-full gap-2">
       <div className="flex">
         <h1 className="text-sm">{props.icon}</h1>
       </div>
       <div className="flex  flex-col justify-start items-start ">
-    <h1 className="font-bold text-sm ">{props.option}</h1>
-    <p className="w-max">{props.name}</p>
+    <h1 className="font-bold text-xs ">{props.option}</h1>
+    <p className="w-10 text-[0.6rem]">{props.name}</p>
     </div>
     </div>
       <div className=" flex items-center">

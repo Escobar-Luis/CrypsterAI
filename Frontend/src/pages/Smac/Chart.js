@@ -137,6 +137,7 @@ function Chart({
 
       height: 400,
       width: 800,
+      setSize: null,
       spacingRight: 10,
       navigator: {
         outlineColor: "white",
@@ -205,7 +206,24 @@ function Chart({
         lineWidth: 1,
       },
     ],
-
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 300
+          },
+          chartOptions: {
+              chart: {
+                  height: 300
+              },
+              subtitle: {
+                  text: null
+              },
+              navigator: {
+                  enabled: false
+              }
+          }
+      }]
+  },
     annotations: [
       {
         events: {
@@ -286,6 +304,7 @@ function Chart({
           options={options}
         />
       ) : null}
+      <button onClick={()=>{options.chart.setSize(null)}} id="auto">Auto</button>
     </div>
   );
 }
