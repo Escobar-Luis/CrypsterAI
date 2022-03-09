@@ -1,24 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import { gql, useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
-
-function Chart({
-  s,
-  shown,
-  selctedResultSma2,
-  selctedResultSma1,
-  setChartForm,
-  chartForm,
-  c,
-  su,
-  sd,
-  d,
-  chartClick,
-  results,
-  loading,
-}) {
+import OptimizationContext from "../../context/OptimizationContext";
+function Chart({}) {
+  let { loading, handleClick, chartForm, c, su, sd, d } =
+    useContext(OptimizationContext);
+const[seeAnn, setSeeAnn]= useState(true)
   require("highcharts/modules/annotations")(Highcharts);
   function smaSignal(data) {
     let labels = [];
@@ -33,10 +22,13 @@ function Chart({
             yAxis: 0,
           },
 
-          format: `Buy at ${day.sma1.toLocaleString(undefined, {
+          format: `Buy at ${day.sma1 < 0.01? day.sma1.toLocaleString(undefined, {
             minimumFractionDigits: 6,
             maximumFractionDigits: 6,
-          })}`,
+          }):day.sma1.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }) }`,
           shadow: {
             color: "green",
             offsetX: -1,
@@ -135,8 +127,8 @@ function Chart({
         opacity: 1,
       },
 
-      height: 400,
-      width: 800,
+      height: 350,
+      width: 350,
       setSize: null,
       spacingRight: 10,
       navigator: {
@@ -206,24 +198,6 @@ function Chart({
         lineWidth: 1,
       },
     ],
-    responsive: {
-      rules: [{
-          condition: {
-              maxWidth: 300
-          },
-          chartOptions: {
-              chart: {
-                  height: 300
-              },
-              subtitle: {
-                  text: null
-              },
-              navigator: {
-                  enabled: false
-              }
-          }
-      }]
-  },
     annotations: [
       {
         events: {
@@ -254,6 +228,7 @@ function Chart({
         },
 
         labels: smaSignal(d),
+      visible: seeAnn
       },
     ],
     // yAxis:[{
@@ -263,11 +238,11 @@ function Chart({
   console.log(loading);
   return (
     <div className="overflow-x-hidden">
-      {shown ? (
-        <>
+  
+        
           <button
             className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200"
-            onClick={s}
+            onClick={handleClick}
           >
             SMA Optimization
           </button>
@@ -282,14 +257,8 @@ function Chart({
               alt=""
             />
           </div> */}
-        </>
-      ) : (
-        <div className="absolute flex  justify-center -translate-x-1/2 left-1/3 top-[15rem] p-4">
-          <h1 className="font-bold text-[100px] animate-bounce mt-3">
-            Select Token
-          </h1>
-        </div>
-      )}
+        
+      
       {/* {results? 
       <button
         onClick={chartClick}
@@ -304,7 +273,14 @@ function Chart({
           options={options}
         />
       ) : null}
-      <button onClick={()=>{options.chart.setSize(null)}} id="auto">Auto</button>
+      <button
+        onClick={() => {
+          setSeeAnn(!seeAnn);
+        }}
+        id="auto"
+      >
+        Auto
+      </button>
     </div>
   );
 }

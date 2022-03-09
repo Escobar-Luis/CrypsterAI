@@ -1,10 +1,11 @@
-import React from 'react'
-
+import React, {useContext} from 'react'
+import OptimizationContext from '../../context/OptimizationContext';
 function LengthParam(props) {
+  let { setopenDos, openDos} = useContext(OptimizationContext);
   
     return (
       <div className='grid grid-cols-1 border-l-2 rounded-full'>
-      <div  onClick={() => props.setopenDos(!props.openDos)} className="hover:cursor-pointer flex  items-center   p-3 w-auto  gap-3 ">
+      <div  onClick={() => setopenDos(!openDos)} className="hover:cursor-pointer flex  items-center   p-3 w-auto  gap-3 ">
       <div className="flex">
         <h1 className="text-sm">{props.icon}</h1>
       </div>
@@ -14,7 +15,7 @@ function LengthParam(props) {
     </div>
     </div>
       <div className=" w-10">
-      {props.openDos && props.children}
+      {openDos && props.children}
       </div>
       </div>
     );}

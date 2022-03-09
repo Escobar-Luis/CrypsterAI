@@ -138,7 +138,15 @@ export const AuthProvider = ({ children }) => {
       history("/dashboard");
     },
   });
-
+  /**------------------------------------------------------------------------
+   *                         LogOut User
+   *------------------------------------------------------------------------**/
+   function logout() {
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("refreshToken");
+    setIsLogged(false);
+    history("/login");
+  }
   const [first, setfirst] = useState(null);
 
 
@@ -155,6 +163,7 @@ export const AuthProvider = ({ children }) => {
     setIsLogged: setIsLogged,
     createUser: createUser,
     logIn: logIn,
+    logout:logout
   };
 
   return (

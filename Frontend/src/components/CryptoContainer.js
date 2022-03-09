@@ -1,80 +1,39 @@
-import React, { useState, useEffect, useContext } from "react";
-
+import React, { useState, useContext } from "react";
 import CryptoCard from "./CryptoCard";
 import MoreInfo from "./MoreInfo";
-import AuthContext from "../context/AuthContext";
-function CryptoCardContainer({
+import DashboardContext from "../context/DashboardContext";
+function CryptoContainer({
   userSeeing,
-  userPortfolio,
-  openDash,
-  setOpenDash,
-  brolic,
-  setshown,
-  popout,
-  setclick,
-  setSeen,
-  setoptimizerForm,
-  setChartForm,
-  chartForm,
-  optimizerForm,
+
 }) {
-  let { user } = useContext(AuthContext);
-  const [open, setOpen] = useState(false);
+  let { userPortfolio, cryptoData } = useContext(DashboardContext);
+
+  const [openMoreInfo, setOpenMoreInfo] = useState(false);
   const [more, setmore] = useState(null);
   const [search, setsearch] = useState("");
-  const [cryptoData, setCryptoData] = useState(null);
 
   const portfolioVisibleCryptos = userPortfolio?.filter((c) => {
     return c.id.includes(search.toLowerCase());
   });
-  const not = cryptoData?.filter((c) => {
+
+  const notInPortfolio = cryptoData?.filter((c) => {
     return !userPortfolio?.some((f) => {
       return f.id === c.id;
     });
   });
-  const allVisibleCryptos = not?.filter((c) => {
+  const allVisibleCryptos = notInPortfolio?.filter((c) => {
     return c.id.includes(search.toLowerCase());
   });
 
-  useEffect(() => {
-    fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false"
-    )
-      .then((r) => r.json())
-      .then((d) => setCryptoData(d))
-      .catch((e) => console.log(e));
-
-    let interval = setInterval(() => {
-      fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false"
-      )
-        .then((r) => r.json())
-        .then((d) => setCryptoData(d))
-        .catch((e) => console.log(e));
-    }, 10000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     // <div className='container-full flex items-center'>
-    <div
-      className={
-        openDash
-          ? ""
-          : "bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen overflow-hidden "
-      }
-    >
-      {/* <div className=" flex justify-center">
-      <button onClick={logout} className="mt-5 p-3 rounded-full shadow-xl shadow-black border bg-yellow-500 border-blue-500 hover:bg-yellow-200">Logout</button>
-    </div> */}
+    <div>
       <div className="flex justify-center ">
         <input
           className={
-            open
+            openMoreInfo
               ? "hidden"
-              : openDash
-              ? "mt-5 p-3 rounded-full shadow-xl shadow-black border border-blue-500"
-              : " p-3 rounded-full shadow-xl shadow-black border border-blue-500"
+              : "mt-5 p-3 rounded-full shadow-xl shadow-black border border-blue-500"
           }
           type="search"
           value={search}
@@ -84,21 +43,19 @@ function CryptoCardContainer({
       </div>
       <div
         className={
-          open
+          openMoreInfo
             ? " blur-lg  grid grid-cols-2 md:grid-cols-6 mx-5 items-center justify-around gap-7 overflow-y-auto rounded-3xl h-screen"
             : "  rounded-3xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 px-5  items-center justify-evenly gap-5 overflow-y-scroll  pt-10 pb-[6rem] h-screen"
         }
       >
-        {cryptoData == null
-          ? null
-          : userSeeing === "portfolio"
+        {userSeeing === "portfolio"
           ? portfolioVisibleCryptos?.map((c) => {
               return (
                 <CryptoCard
                   key={c.id}
                   crypto={c}
-                  open={open}
-                  setOpen={setOpen}
+                 
+                  setOpen={setOpenMoreInfo}
                   setmore={setmore}
                 />
               );
@@ -108,28 +65,17 @@ function CryptoCardContainer({
                 <CryptoCard
                   key={c.id}
                   crypto={c}
-                  open={open}
-                  setOpen={setOpen}
+                
+                  setOpen={setOpenMoreInfo}
                   setmore={setmore}
                 />
               );
             })}
         <MoreInfo
-          chartForm={chartForm}
-          optimizerForm={optimizerForm}
-          setChartForm={setChartForm}
-          setoptimizerForm={setoptimizerForm}
-          setSeen={setSeen}
-          setclick={setclick}
-          popout={popout}
-          setshown={setshown}
-          brolic={brolic}
-          setOpen={setOpen}
-          setOpenDash={setOpenDash}
-          openDash={openDash}
+
+          open={openMoreInfo}
           key={more ? more.name : null}
-          open={open}
-          onClose={() => setOpen(false)}
+          onClose={() => setOpenMoreInfo(false)}
           more={more}
         />
       </div>
@@ -137,4 +83,4 @@ function CryptoCardContainer({
   );
 }
 
-export default CryptoCardContainer;
+export default CryptoContainer;

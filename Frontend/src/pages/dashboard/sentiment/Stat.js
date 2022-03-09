@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Stat({c, shown}) {
+function Stat({c}) {
 
     function gaugeColor (gauge) {
       if (gauge >= 0 && gauge < 30) {

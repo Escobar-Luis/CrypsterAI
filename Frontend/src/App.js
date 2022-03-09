@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import { AuthProvider } from "./context/AuthContext";
 import { OptionsProvider } from "./context/OptionsContext";
 import { DashboardProvider } from "./context/DashboardContext";
+import { OptimizationProvider } from "./context/OptimizationContext";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <AuthProvider>
         <OptionsProvider>
           <DashboardProvider>
+            <OptimizationProvider>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route element={<PublicRoute />}>
@@ -30,6 +32,7 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
               </Route>
             </Routes>
+            </OptimizationProvider>
           </DashboardProvider>
         </OptionsProvider>
       </AuthProvider>

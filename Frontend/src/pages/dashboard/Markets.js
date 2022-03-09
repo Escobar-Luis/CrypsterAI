@@ -1,66 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Stat from "./Stat";
+import React from 'react'
 
-function TopStats({ shown, seen }) {
-  // const [close, setClose] = useState(null)
-  // useEffect(() => {
-  //   fetch(`https://api.coingecko.com/api/v3/coins/${shown?.id}/ohlc?vs_currency=usd&days=365`)
-  //   .then(r=>r.json())
-  //   .then((d) => {
-  //     console.log(d)
-  //   })
-  // }, [shown])
-  function currencyParser(labelValue) {
-    return Math.abs(Number(labelValue)) >= 1.0e12
-      ? (Math.abs(Number(labelValue)) / 1.0e12).toFixed(2) + "T"
-      : Math.abs(Number(labelValue)) >= 1.0e9
-      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
-      : Math.abs(Number(labelValue)) >= 1.0e6
-      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
-      : Math.abs(Number(labelValue)) >= 1.0e3
-      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
-      : Math.abs(Number(labelValue));
-  }
-  if (shown && seen === "sentiment") {
-    const topStats = [
-      {
-        title: "CoinGecko Score",
-        value: shown.coingecko_score,
-        unit: "psia",
-        gauge: shown.coingecko_score,
-      },
-      {
-        title: "Community score",
-        value: shown.community_score,
-        unit: "°C",
-        gauge: shown.community_score,
-      },
-      {
-        title: "Developer Score",
-        value: shown.developer_score,
-        unit: "psia",
-        gauge: shown.developer_score,
-      },
-      {
-        title: "Liquidity Score",
-        value: shown.liquidity_score,
-        unit: "mmHg",
-        gauge: shown.liquidity_score,
-      },
-    ];
-    return (
-      <div className=" grid grid-cols-2  gap-4 place-items-center">
-        {/* <div className="flex justify-center space-x-4"> */}
-        {topStats.map((c) => {
-          return <Stat shown={shown} key={c.title} c={c} />;
-        })}
-      </div>
-    );
-  } else if (seen === "smac") {
-    return <div>smac</div>;
-  } else if (seen === "market" && shown) {
-    return (
-      <div className="text-white text-[0.85rem] xs:text-[1.1rem]">
+function Markets({shown}) {
+  return (
+    <div className="text-white text-[0.85rem] xs:text-[1.1rem]">
         <div className="flex flex-col justifiy-center items-center  ">
           <div className="rank-price flex flex-col gap-3 w-screen h-full  ">
             <h1 className=" text-center text-[1rem] border-b-2">
@@ -137,10 +79,7 @@ function TopStats({ shown, seen }) {
           </div>
         </div>
       </div>
-    );
-  } else {
-    return null;
-  }
+  )
 }
 
-export default TopStats;
+export default Markets

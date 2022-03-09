@@ -9,72 +9,14 @@ import AuthContext from "../../context/AuthContext";
 import FreqParam from "./FreqParam";
 import LengthParam from "./LengthParam";
 import Parameters from "./Parameters";
-function Smac({
-  shown,
-  handleOptimizer,
-  setclick,
-  selctedResultSma2,
-  selctedResultSma1,
-  setChartForm,
-  chartForm,
-  setoptimizerForm,
-  optimizerForm,
-  c,
-  su,
-  sd,
-  d,
-  chartClick,
-  results,
-  setSeen,
-}) {
-  const [open, setopen] = useState(false);
-  const [openDos, setopenDos] = useState(false);
+import OptimizationContext from "../../context/OptimizationContext";
 
-  const CREATE_SMAC = gql`
-    mutation smac($date: String!, $length: Int!, $ticker: String!) {
-      smaOptimizer(date: $date, length: $length, ticker: $ticker) {
-        res
-      }
-    }
-  `;
-  const [smaOptimizer, { loading, data }] = useMutation(CREATE_SMAC, {
-    update: (proxy, mutationResult) => {
-      const x = mutationResult.data.smaOptimizer.res;
-      console.log(x);
-      const y = x[0];
-      setChartForm({ ...chartForm,date:optimizerForm.Date, sma1: y.sma1, sma2: y.sma2 });
-      handleOptimizer(x);
-      chartClick();
-      setclick(false);
 
-      setSeen("optimizer");
-    },
-  });
-  function handleClick() {
-    console.log("click");
-    if (optimizerForm.date === "Pick A Date") {
-      alert("Invalid Date");
-    } else if (optimizerForm.length === "Pick A Length") {
-      alert("Invalid Length");
-    } else {
-      setopenDos(false);
-      setopen(false);
-      smaOptimizer({
-        variables: {
-          date: optimizerForm.date,
-          length: optimizerForm.length,
-          ticker:
-            optimizerForm.ticker === "ICP-USD"
-              ? "ISP-USD"
-              : optimizerForm.ticker,
-          // ticker: optimizerForm.ticker
-        },
-      });
-    }
-  }
-  function handleEnter(cdd) {
-    return cdd;
-  }
+function Smac({}) {
+  let { setoptimizerForm, setChartForm, optimizerForm, loading, chartForm } = useContext(OptimizationContext);
+
+
+  
   function handleChange(e) {
     setoptimizerForm({
       ...optimizerForm,
@@ -86,17 +28,11 @@ function Smac({
     <div className=" text-white overflow-x-hidden">
       {/* <Parameters/> */}
       <ParametersContainer>
-
         <Parameter icon="⏱️" name="Frequency" option="Daily"></Parameter>
         <FreqParam
-          open={open}
-          setopen={setopen}
           icon="📅"
           name="Start "
-          option={
-            optimizerForm.date === "Pick A Date"
-              ? optimizerForm.date
-              : moment(optimizerForm.date, "YYYYMMDD").fromNow()
+          option={ moment(optimizerForm.date, "YYYYMMDD").fromNow()
           }
         >
           <input
@@ -108,8 +44,6 @@ function Smac({
           ></input>
         </FreqParam>
         <LengthParam
-          openDos={openDos}
-          setopenDos={setopenDos}
           icon="📏"
           name="Max SMA"
           option={optimizerForm.length}
@@ -124,38 +58,17 @@ function Smac({
         </LengthParam>
       </ParametersContainer>
       {loading ? (
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full h-screen bg-blue-500 animate-pusle">
+        <div class="border border-blue-300 shadow rounded-md p-4 w-full h-[30rem] bg-blue-500 animate-pusle">
           <div class="animate-pulse flex space-x-4">
-            <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-            <div class="flex-1 space-y-6 py-1">
-              <div class="h-2 bg-slate-700 rounded"></div>
-              <div class="space-y-3">
-                <div class="grid grid-cols-3 gap-4">
-                  <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-                  <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-                </div>
-                <div class="h-2 bg-slate-700 rounded"></div>
+            <div className="hidden">
+              <Chart/>
               </div>
-            </div>
           </div>
         </div>
       ) : (
         <Chart
-          loading={loading}
-          results={results}
-          chartClick={chartClick}
-          c={c}
-          su={su}
-          sd={sd}
-          d={d}
-          chartForm={chartForm}
-          setChartForm={setChartForm}
-          selctedResultSma2={selctedResultSma2}
-          selctedResultSma1={selctedResultSma1}
-          shown={shown}
-          s={handleClick}
-        />
-      )}
+        />)}
+      
       {/* <div className="container flex justify-center">
         <div class=" border border-white  rounded-full p-5 ant-col ant-col-xs-24 ant-col-sm-8 ant-col-md-8 ant-col-lg-3">
           <div class="parameter-setting" tabindex="0" id="frequency">

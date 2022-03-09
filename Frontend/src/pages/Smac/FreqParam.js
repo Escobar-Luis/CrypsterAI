@@ -1,11 +1,12 @@
-import React from 'react'
-
+import React, {useContext} from 'react'
+import OptimizationContext from '../../context/OptimizationContext';
 function FreqParam(props) {
+  let { setopen, open} = useContext(OptimizationContext);
 
   
     return (
         <div className='grid grid-cols-1'>
-      <div  onClick={() => props.setopen(!props.open)} className="hover:cursor-pointer flex  items-center  border-l-2 p-3 w-auto rounded-full gap-3 ">
+      <div  onClick={() => setopen(!open)} className="hover:cursor-pointer flex  items-center  border-l-2 p-3 w-auto rounded-full gap-3 ">
       <div className="flex">
         <h1 className="text-sm">{props.icon}</h1>
       </div>
@@ -15,7 +16,7 @@ function FreqParam(props) {
     </div>
     </div>
       <div className=" flex justify-center items-center">
-      {props.open && props.children}
+      {open && props.children}
       </div>
       </div>
     );}

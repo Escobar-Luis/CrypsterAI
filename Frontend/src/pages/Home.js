@@ -46,16 +46,16 @@ function Home() {
       <div className="  mt-[10%] gap-y-5 relative flex flex-col h-screen items-center justify-start md:left-[10%] md:mt-0  z-10 ">
         <h1
           className=" text-[5rem] md:text-[12rem]  "
-          data-aos="zoom-in"
-          data-aos-duration="1500"
+    
+  
         >
           {" "}
           Welcome
         </h1>
         <h1
           className=" text-[3rem] md:text-[6rem]"
-          data-aos="zoom-in"
-          data-aos-duration="1500"
+        
+         
         >
           {" "}
           Crypto Trader{" "}
@@ -80,8 +80,7 @@ function Home() {
         <div className=" flex flex-col h-screen text-center ">
           <div
             className="content-header"
-            data-aos="fade-down-right"
-            data-aos-duration="1500"
+            
           >
             <h2 className=" text-[3rem] w-full">To your </h2>
             <h2 className=" text-[3.5rem] w-full uppercase font-bold">
@@ -92,8 +91,7 @@ function Home() {
           <div className=" content flex flex-col items-center justify-center ">
             <div
               className="z-[2] xs:w-[35rem]"
-              data-aos="zoom-in"
-              data-aos-duration="1500"
+           
             >
               <lottie-player
                 src="https://assets10.lottiefiles.com/packages/lf20_mplxocmr.json"
@@ -107,7 +105,7 @@ function Home() {
           <div
             className=" flex  items-center justify-center start-button hover:cursor-pointer "
             data-aos="zoom-in-top"
-            data-aos-duration="5000"
+            data-aos-duration="1000"
           >
             <div className="  bg-black border-white rounded-xl xs:text-[4rem] text-[2rem] p-2 hover:animate-none shadow-2xl animate-pulse  shadow-purple-500">
               <Link to="/login" className="">

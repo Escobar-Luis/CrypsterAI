@@ -1,10 +1,14 @@
-import React from "react";
+import React,{useContext} from "react";
 import { RiAddCircleLine, RiAddLine, RiDeleteBin2Line } from "react-icons/ri";
+import DashboardContext from "../context/DashboardContext";
 
-function Wrapper({inPort, setOpen,  shown,  handleAdd, handleDelete}) {
+
+function Wrapper({  }) {
   const site = document.getElementById("siteWrapper");
   const bodyTag = document.getElementsByTagName("body")[0];
   const mobileNavbar = document.getElementsByClassName("main-navbar")[0];
+
+  let { shown, handleAdd, handleDelete, inPort, setOpenDash,} = useContext(DashboardContext);
 
   
   return (
@@ -45,7 +49,7 @@ function Wrapper({inPort, setOpen,  shown,  handleAdd, handleDelete}) {
           </sub>
         </div>
         <button
-          onClick={() => setOpen(true)}
+          onClick={() => setOpenDash(true)}
           id="searchButton"
           class="text-white bg-transparent hover:bg-black p-2 rounded-full border-2 border-white"
         >

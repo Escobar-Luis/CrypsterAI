@@ -1,19 +1,14 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import DashboardContext from "../context/DashboardContext";
+import OptionsContext from "../context/OptionsContext";
 
-function NavItem({ options, setSeen }) {
-  let { setIsLogged } = useContext(AuthContext);
-  const history = useNavigate();
-  function logout() {
-    sessionStorage.removeItem("accessToken");
-    sessionStorage.removeItem("refreshToken");
-    setIsLogged(false);
-    history("/login");
-  }
-  function handleSeen(e) {
-    setSeen(e.target.innerText.toLowerCase());
-  }
+function NavItem() {
+  let { logout } = useContext(AuthContext);
+  let { handleNavSeen } = useContext(DashboardContext);
+  let { options } = useContext(OptionsContext);
+
   const site = document.getElementById("siteWrapper");
   const bodyTag = document.getElementsByTagName("body")[0];
   return options.map((o) => {
@@ -28,7 +23,7 @@ function NavItem({ options, setSeen }) {
           site.classList.remove("navbar-active-site-wrapper");
           site.classList.add("navbar-deactive-site-wrapper");
           bodyTag.classList.remove("active-navbar-body");
-          handleSeen(e);
+          handleNavSeen(e);
         }}
       >
         <div className="space-x-3 flex items-center ">

@@ -136,11 +136,18 @@ class ChartSMA(graphene.Mutation):
         data=strategy(df, sma1, sma2)
         a=[]
         for row in data.itertuples(index=True, name='returns'):
-             x=dict(date=row[0].strftime('%Y-%m-%d'), close=row[5], volume=row[6], sma1= row[8],
-             sma2=row[9], position=row[10],
-             ret="{:,.2%}".format(row[7]),
-             stratret="{:,.2%}".format(row[11]))
-             a.append(x)
+            if row[5]< 0.01:
+                x=dict(date=row[0].strftime('%Y-%m-%d'), close=float("{:.6f}".format(row[5])), volume=row[6], sma1= float("{:.6f}".format(row[8])),
+                sma2=float("{:.6f}".format(row[9])), position=row[10],
+                ret="{:,.2%}".format(row[7]),
+                stratret="{:,.2%}".format(row[11]))
+                a.append(x)
+            else:
+                x=dict(date=row[0].strftime('%Y-%m-%d'), close=float("{:.2f}".format(row[5])), volume=row[6], sma1= float("{:.2f}".format(row[8])),
+                sma2=float("{:.2f}".format(row[9])), position=row[10],
+                ret="{:,.2%}".format(row[7]),
+                stratret="{:,.2%}".format(row[11]))
+                a.append(x)
         return ChartSMA(res=a)
 class SMAC(graphene.Mutation):
   # Let's define the arguments we can pass the create method 👍 

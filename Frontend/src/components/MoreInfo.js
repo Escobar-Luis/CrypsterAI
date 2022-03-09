@@ -2,79 +2,28 @@ import React, { useEffect, useState, useContext } from "react";
 import ReactDom from "react-dom";
 
 import { useNavigate } from "react-router-dom";
-import { gql, useMutation } from "@apollo/client";
 import AuthContext from "../context/AuthContext";
-function MoreInfo({
-  more,
-  open,
-  onClose,
-  setOpenDash,
-  setOpen,
-  brolic,
-  setshown,
-  openDash,
-  popout,
-  setclick,
-  setSeen,
-  setoptimizerForm,
-  setChartForm,
-  chartForm,
-  optimizerForm,
-}) {
-  const history = useNavigate();
-  let { user, refetch, handlefirst } = useContext(AuthContext);
-  const [formData, setFormData] = useState(
-    more
-      ? {
-          name: more.id,
-          user: user ? user.pk : null,
-        }
-      : null
-  );
-  console.log(more?.name);
-  const CREATE_TOKEN = gql`
-    mutation token($name: String!, $userId: Int!) {
-      createToken(name: $name, userId: $userId) {
-        token
-      }
-    }
-  `;
+import DashboardContext from "../context/DashboardContext";
+import OptimizationContext from "../context/OptimizationContext";
 
-  const [createToken, { loading }] = useMutation(CREATE_TOKEN, {
-    update: (proxy, mutationResult) => {
-      console.log(mutationResult);
-    },
-  });
+function MoreInfo({ more, open, onClose }) {
+  let { handlefirst } = useContext(AuthContext);
+  let { setshown, setOpenDash } = useContext(DashboardContext);
+  let { setoptimizerForm, setChartForm, chartForm, optimizerForm } =
+    useContext(OptimizationContext);
+  console.log(more?.name);
+
   function handleClick() {
-    // Object.freeze();
-    // console.log(formData);
-    // if (
-    //   user?.tokenSet.filter((c) => {
-    //     return more ? c.name === more.id : null;
-    //   }).length > 0
-    // ) {
-    //   return alert("Coin already in Portfolio"), setOpen(false);
-    // }
-    // createToken({
-    //   variables: {
-    //     name: formData.name,
-    //     userId: formData.user,
-    //   },
-    // });
-    refetch();
     handlefirst(more);
-    history("/dashboard");
     setOpenDash(false);
-    popout(more);
-    setclick(true);
-    setSeen("sentiment");
+    setshown(more);
     setChartForm({ ...chartForm, ticker: `${more.symbol.toUpperCase()}-USD` });
     setoptimizerForm({
       ...optimizerForm,
       ticker: `${more.symbol.toUpperCase()}-USD`,
     });
   }
-  console.log(more?.description.en.length);
+
   if (!open) return null;
 
   return ReactDom.createPortal(
@@ -207,12 +156,6 @@ function MoreInfo({
                 </svg>
               </div>
             </div>
-
-            {/* <div className="class w-full absolute left-0 bottom-12 flex justify-center space-x-3">
-              <span className="w-4 h-4 bg-white hover:bg-white rounded-full block cursor-pointer"></span>
-              <span className="w-4 h-4 bg-gray-300 hover:bg-white rounded-full block cursor-pointer"></span>
-              <span className="w-4 h-4 bg-gray-300 hover:bg-white rounded-full block cursor-pointer"></span>
-            </div> */}
           </div>
           {/* /**======================
            *    SECTION right siide of card
