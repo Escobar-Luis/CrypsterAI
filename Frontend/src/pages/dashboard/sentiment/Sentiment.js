@@ -35,7 +35,7 @@ function Sentiment({ shown }) {
     },
     {
       title: "Bearish Social Sentiment",
-      percent: shown.sentiment_votes_up_percentage,
+      percent: shown.sentiment_votes_down_percentage,
     },
   ];
 

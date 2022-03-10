@@ -64,24 +64,25 @@ export const DashboardProvider = ({ children }) => {
   const [createToken, {}] = useMutation(CREATE_TOKEN, {
     update: (proxy, mutationResult) => {
       console.log(mutationResult);
+      refetch()
     },
   });
 
   function handleAdd() {
-    if (
-      user?.tokenSet.filter((c) => {
-        return shown ? c.name === shown.id : null;
-      }).length > 0
-    ) {
-      return alert("Coin already in Portfolio");
-    }
+    // if (
+    //   user?.tokenSet.filter((c) => {
+    //     return shown ? c.name === shown.id : null;
+    //   })
+    // ) {
+    //   return alert("Coin already in Portfolio");
+    // }
     createToken({
       variables: {
         name: shown.id,
         userId: user.pk,
       },
     });
-    refetch();
+    ;
   }
   /**------------------------------------------------------------------------
    *                         Delete Token From Portfolio
@@ -96,6 +97,8 @@ export const DashboardProvider = ({ children }) => {
 
   const [deleteToken, { data }] = useMutation(DELETE_TOKEN, {
     update: (proxy, mutationResult) => {
+      refetch()
+      setshown(null)
       setResults(null);
       setc(null);
       setSeen("sentiment");
@@ -118,8 +121,8 @@ export const DashboardProvider = ({ children }) => {
         id: token[0].id,
       },
     });
-    refetch();
-    setshown(userPortfolio.length > 0 ? userPortfolio[0] : null);
+    ;
+    ;
   }
   let contextData = {
     userPortfolio: userPortfolio,

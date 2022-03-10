@@ -12,7 +12,7 @@ function Markets({shown}) {
               <div className="flex flex-col ">
                 <h1>Current Price:</h1>
                 <div className="text-[2rem] xs:text-[2.4rem]">
-                  ${shown?.market_data.current_price.usd.toLocaleString()}
+                  ${shown?.market_data.current_price.usd <0.01? shown?.market_data.current_price.usd.toFixed(7) :shown?.market_data.current_price.usd.toLocaleString()}
                 </div>
               </div>
 
@@ -29,11 +29,11 @@ function Markets({shown}) {
                 <h1>Key Stats:</h1>
           <div className=" border-t-2 grid grid-cols-2 items-center gap-5 text-center p-3 ">
             <div>
-              <h1>24H Low</h1>${shown?.market_data.low_24h.usd.toLocaleString()}
+              <h1>24H Low</h1>${shown?.market_data.low_24h.usd < 0.01? shown?.market_data.low_24h.usd.toFixed(7) :shown?.market_data.low_24h.usd .toLocaleString()}
             </div>
             <div>
               <h1>24H High</h1>$
-              {shown?.market_data.high_24h.usd.toLocaleString()}
+              {shown?.market_data.high_24h.usd < 0.01? shown?.market_data.high_24h.usd.toFixed(7):shown?.market_data.high_24h.usd.toLocaleString()}
             </div>
             <div>
               <h1>Total Market Cap</h1>$
@@ -53,26 +53,26 @@ function Markets({shown}) {
               <div>
                 <h1>Past Week:</h1>
                 <div className={shown?.market_data.price_change_percentage_7d >0 ? 'text-green-400': 'text-red-400'}>
-                  {shown?.market_data.price_change_percentage_7d.toFixed(2)}%
+                  {shown?.market_data.price_change_percentage_7d.toLocaleString(undefined, { maximumFractionDigits: 2 })}%
                 </div>
               </div>
               <div>
                 <h1>Past Month:</h1>
                 <div className={shown?.market_data.price_change_percentage_30d >0 ? 'text-green-400': 'text-red-400'}>
-                  {shown?.market_data.price_change_percentage_30d.toFixed(2)}%
+                  {shown?.market_data.price_change_percentage_30d.toLocaleString(undefined, { maximumFractionDigits: 2 })}%
                 </div>
               </div>
               <div >
                 <h1>Past 6 Months:</h1>
                 <div className={shown?.market_data.price_change_percentage_200d >0 ? 'text-green-400': 'text-red-400'}>
-                  {shown?.market_data.price_change_percentage_200d.toFixed(2)}%
+                  {shown?.market_data.price_change_percentage_200d.toLocaleString(undefined, { maximumFractionDigits: 2 })}%
                 </div>
               </div>
 
               <div>
                 <h1>Past Year:</h1>
                 <div className={shown?.market_data.price_change_percentage_1y >0 ? 'text-green-400': 'text-red-400'}>
-                  {shown?.market_data.price_change_percentage_1y.toFixed(2)}%
+                  {shown?.market_data.price_change_percentage_1y.toLocaleString(undefined, { maximumFractionDigits: 2 })}%
                 </div>
               </div>
             </div>
