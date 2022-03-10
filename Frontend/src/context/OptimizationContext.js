@@ -130,7 +130,7 @@ export const OptimizationProvider = ({ children }) => {
     },
   });
   console.log(loading)
-  function handleClick() {
+  function handleClick(x) {
     console.log("click");
     if (optimizerForm.date === "Pick A Date") {
       alert("Invalid Date");
@@ -150,7 +150,7 @@ export const OptimizationProvider = ({ children }) => {
           // ticker: optimizerForm.ticker
         },
       });
-    }
+    x(true)}
   }
 console.log(optimizerForm, chartForm)
   let contextData = {

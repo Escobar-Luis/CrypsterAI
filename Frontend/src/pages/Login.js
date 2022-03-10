@@ -125,7 +125,7 @@ function Login() {
               <Link
                 onClick={() => setIsLogged(true)}
                 className=" tracking-wide  flex justify-center border-b border-gray-300 hover:text-purple-500"
-                to="/cryptos"
+                to="/dashboard"
               >
                 Continue As Guest
               </Link>

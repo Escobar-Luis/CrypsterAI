@@ -246,7 +246,7 @@ function Chart({}) {
     <div className="overflow-x-hidden">
       <button
         className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200"
-        onClick={handleClick}
+        onClick={()=>handleClick(setSeeChart)}
       >
         SMA Optimization
       </button>
