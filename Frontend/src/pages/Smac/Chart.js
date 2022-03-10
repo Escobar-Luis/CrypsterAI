@@ -4,10 +4,12 @@ import HighchartsReact from "highcharts-react-official";
 import { gql, useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import OptimizationContext from "../../context/OptimizationContext";
+import ChartPortal from "./ChartPortal";
 function Chart({}) {
   let { loading, handleClick, chartForm, c, su, sd, d } =
     useContext(OptimizationContext);
-const[seeAnn, setSeeAnn]= useState(true)
+  const [seeAnn, setSeeAnn] = useState(true);
+  const [seeChart, setSeeChart] = useState(false);
   require("highcharts/modules/annotations")(Highcharts);
   function smaSignal(data) {
     let labels = [];
@@ -22,13 +24,17 @@ const[seeAnn, setSeeAnn]= useState(true)
             yAxis: 0,
           },
 
-          format: `Buy at ${day.sma1 < 0.01? day.sma1.toLocaleString(undefined, {
-            minimumFractionDigits: 6,
-            maximumFractionDigits: 6,
-          }):day.sma1.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }) }`,
+          format: `Buy at ${
+            day.sma1 < 0.01
+              ? day.sma1.toLocaleString(undefined, {
+                  minimumFractionDigits: 6,
+                  maximumFractionDigits: 6,
+                })
+              : day.sma1.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+          }`,
           shadow: {
             color: "green",
             offsetX: -1,
@@ -89,6 +95,7 @@ const[seeAnn, setSeeAnn]= useState(true)
     },
 
     chart: {
+      styledMode: true,
       zoomType: "xy",
       borderWidth: 1,
       resetZoomButton: {
@@ -127,9 +134,8 @@ const[seeAnn, setSeeAnn]= useState(true)
         opacity: 1,
       },
 
-      height: 350,
-      width: 350,
-      setSize: null,
+      width:  600,
+
       spacingRight: 10,
       navigator: {
         outlineColor: "white",
@@ -228,7 +234,7 @@ const[seeAnn, setSeeAnn]= useState(true)
         },
 
         labels: smaSignal(d),
-      visible: seeAnn
+        visible: seeAnn,
       },
     ],
     // yAxis:[{
@@ -238,15 +244,13 @@ const[seeAnn, setSeeAnn]= useState(true)
   console.log(loading);
   return (
     <div className="overflow-x-hidden">
-  
-        
-          <button
-            className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200"
-            onClick={handleClick}
-          >
-            SMA Optimization
-          </button>
-          {/* <div className="absolute flex  justify-center -translate-x-1/3 left-1/3 top-[10rem] p-4">
+      <button
+        className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200"
+        onClick={handleClick}
+      >
+        SMA Optimization
+      </button>
+      {/* <div className="absolute flex  justify-center -translate-x-1/3 left-1/3 top-[10rem] p-4">
             <img
               className={
                 c
@@ -257,8 +261,7 @@ const[seeAnn, setSeeAnn]= useState(true)
               alt=""
             />
           </div> */}
-        
-      
+
       {/* {results? 
       <button
         onClick={chartClick}
@@ -266,21 +269,36 @@ const[seeAnn, setSeeAnn]= useState(true)
       >
         Chart
       </button>:null} */}
-      {c ? (
+      {/* {c ? (
         <HighchartsReact
           highcharts={Highcharts}
           constructorType={"stockChart"}
           options={options}
         />
-      ) : null}
+      ) : null} */}
       <button
         onClick={() => {
           setSeeAnn(!seeAnn);
         }}
         id="auto"
       >
-        Auto
+        Hide labels
       </button>
+      <button
+        onClick={() => {
+          setSeeChart(!seeChart);
+        }}
+        id="auto"
+      >
+        Show Chart
+      </button>
+      <ChartPortal
+        options={options}
+        seeChart={seeChart}
+        setSeeChart={setSeeChart}
+        seeAnn={seeAnn}
+        setSeeAnn={setSeeAnn}
+      />
     </div>
   );
 }
