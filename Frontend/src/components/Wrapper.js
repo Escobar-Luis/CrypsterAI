@@ -1,7 +1,7 @@
 import React,{useContext} from "react";
 import { RiAddCircleLine, RiAddLine, RiDeleteBin2Line } from "react-icons/ri";
 import DashboardContext from "../context/DashboardContext";
-
+import image from './CrypsterAI.png'
 
 function Wrapper({  }) {
   const site = document.getElementById("siteWrapper");
@@ -40,13 +40,14 @@ function Wrapper({  }) {
           </svg>
         </button>
         <div className="flex flex-col">
-          <span class="selecet-none font-black text-white text-2xl cursor-pointer">
+          <img src={image} className='h-[3rem] sm:h-[4rem] w-full'/>
+          {/* <span class="selecet-none font-black text-white text-2xl cursor-pointer">
             CrypsterAI
           </span>
           <sub className="text-[0.6rem] text-purple-400">
             {" "}
             By Luis Alfredo Escobar
-          </sub>
+          </sub> */}
         </div>
         <button
           onClick={() => setOpenDash(true)}

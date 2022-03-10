@@ -1,14 +1,14 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CrypsterAI",
+  "name": "Crypto Trading Backtester",
   "icons": [
     {
-      "src": "logo192.png",
+      "src": "Preview.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "Preview.png",
       "type": "image/png",
       "sizes": "512x512"
     }
