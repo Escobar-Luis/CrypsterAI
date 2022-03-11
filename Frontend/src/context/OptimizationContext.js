@@ -147,6 +147,7 @@ console.log(deviceTyp
     }
     return "desktop";
   };
+  const[optimizedOnce,setOptimizedOnce]=useState(false)
   const [smaOptimizer, { loading }] = useMutation(CREATE_SMAC, {
     update: (proxy, mutationResult) => {
       const isMobile = deviceType();
@@ -167,6 +168,7 @@ console.log(deviceTyp
 
   function handleClick(x) {
     console.log("click");
+    setOptimizedOnce(true)
     if (optimizerForm.date === "Pick A Date") {
       alert("Invalid Date");
     } else if (optimizerForm.length === "Pick A Length") {
@@ -208,6 +210,7 @@ console.log(deviceTyp
     setSeeChart: setSeeChart,
     handleSelectedResult: handleSelectedResult,
     onMobile: onMobile,
+    optimizedOnce:optimizedOnce
   };
 
   return (

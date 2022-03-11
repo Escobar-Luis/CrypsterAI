@@ -73,7 +73,7 @@ function LeftPane({}) {
   }
   if (seen === "optimizer") {
     return (
-      <div className="res h-screen w-full    sm:w-auto  sm:h-[35rem]   ">
+      <div className="res h-screen w-full    sm:w-auto  sm:h-screen  ">
         <Table
           chartForm={chartForm}
           handleSelectedResult={handleSelectedResult}

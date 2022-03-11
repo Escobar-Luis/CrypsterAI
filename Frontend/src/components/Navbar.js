@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import NavItem from "./NavItem";
 import { RiCloseFill } from "react-icons/ri";
+import AuthContext from '../context/AuthContext'
 
 function Navbar() {
   const site = document.getElementById("siteWrapper");
@@ -13,7 +14,8 @@ function Navbar() {
       mobileNavbar.classList.add("hidden");
     }, 500);
   }
-
+  let{name} = useContext(AuthContext)
+  console.log(name)
   return (
     <div class=" main-navbar bg-space h-screen md:h-[5rem] text-gray-100 py-6 md:py-3   w-screen hidden md:w-1/5 ">
       <div class="container text-left mx-auto md:mx-1 px-5 ">
@@ -61,8 +63,8 @@ function Navbar() {
                 <span class="block  font-thin md:px-5 lg:px-0 text-[2rem]">
                   Hello,
                 </span>
-                <span class="block pr-2 whitespace-nowrap text-[2rem]">
-                  Luis Escobar
+                <span class="block pr-2 whitespace-nowrap text-[2rem] capitalize">
+                  {name}
                 </span>
               </div>
               {/* <img

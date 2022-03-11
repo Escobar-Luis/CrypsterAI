@@ -2,7 +2,6 @@ import React,{useContext} from "react";
 import { RiAddCircleLine, RiAddLine, RiDeleteBin2Line } from "react-icons/ri";
 import DashboardContext from "../context/DashboardContext";
 import image from './CrypsterAI.png'
-
 function Wrapper({  }) {
   const site = document.getElementById("siteWrapper");
   const bodyTag = document.getElementsByTagName("body")[0];

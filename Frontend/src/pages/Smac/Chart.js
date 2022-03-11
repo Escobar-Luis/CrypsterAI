@@ -18,6 +18,8 @@ function Chart({}) {
     seeChart,
     setSeeChart,
     onMobile,
+    results,
+    optimizedOnce,
   } = useContext(OptimizationContext);
   const [seeAnn, setSeeAnn] = useState(true);
 
@@ -106,9 +108,8 @@ function Chart({}) {
     },
 
     chart: {
-      // styledMode: true,
-      // height: seeChart ? null : null,
-      // width: seeChart ? 350 : 200,
+      plotAreaHeight: 600,
+     reflow:true,
       zoomType: "xy",
       borderWidth: 1,
       resetZoomButton: {
@@ -257,7 +258,7 @@ function Chart({}) {
   };
   console.log(loading);
   return (
-    <div className="">
+    <div className="w-screen h-screen">
       <div className="flex items-center justify-center ">
         {" "}
         <button
@@ -270,31 +271,35 @@ function Chart({}) {
 
       {onMobile === "mobile" ? (
         <>
-          <button
+          {/* <button
             onClick={() => {
               setSeeChart(!seeChart);
             }}
             id="auto"
           >
             Show Chart
-          </button>
+          </button> */}
           <div className="">
             <LeftPane />
           </div>
         </>
       ) : onMobile !== "mobile" ? (
-        <div className="flex justify-start items-start w-screen h-screen ">
+        <div className="flex justify-start items-start h-screen w-screen">
+          {results ? <LeftPane /> : null}
+
           
-          <LeftPane />
-          <div className=" flex flex-col grow ">
             {c ? (
-              <>
+           
+             <div className=" flex-col flex grow h-screen">
+             <div className=" ">
                 <HighchartsReact
                   highcharts={Highcharts}
                   constructorType={"stockChart"}
                   options={options}
                 />
-                <div className="flex justify-center items-center">
+             </div>
+
+                <div className="flex justify-center items-center shrink">
                   <button
                     className="border p-2 rounded-xl bg-black text-white w-fit"
                     onClick={() => {
@@ -304,12 +309,20 @@ function Chart({}) {
                   >
                     Hide labels
                   </button>
+                </div> 
                 </div>
-              </>
-            ) : <div className="flex items-center justify-center mx-auto h-[30rem] w-[30rem]">
-               <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_m2igjaux.json"  background="transparent"  speed="1"   loop  autoplay></lottie-player>
-              </div>}
-          </div>
+              
+            ) : optimizedOnce ? (
+              <div className="flex items-center justify-center mx-auto h-[30rem] w-[30rem]">
+                <lottie-player
+                  src="https://assets4.lottiefiles.com/packages/lf20_m2igjaux.json"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                ></lottie-player>
+              </div>
+            ) : null}
         </div>
       ) : null}
       <ChartPortal

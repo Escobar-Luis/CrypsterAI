@@ -15,7 +15,7 @@ import DashboardContext from "../context/DashboardContext";
 import Markets from "./dashboard/Markets";
 import Sentiment from "./dashboard/sentiment/Sentiment";
 import OptimizationContext from "../context/OptimizationContext";
-
+import News from './dashboard/news/News.js'
 function Dashboard() {
   let { shown, seen, openDash, setCryptoData } = useContext(DashboardContext);
   let { results } = useContext(OptimizationContext);
@@ -91,7 +91,7 @@ function Dashboard() {
                 {/* <Dock setclick={setclick} setSeen={setSeen} /> */}
               </>
             ) : (
-              <></>
+              <News />
             )}
           </div>
 

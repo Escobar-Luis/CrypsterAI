@@ -26,7 +26,7 @@ function Smac({}) {
     setChartForm({ ...chartForm, [e.target.name]: e.target.value.trim() });
   }
   return (
-    <div className="flex justify-center items-center  ">
+    <div className="flex justify-center items-center ">
     <div className=" text-white ">
       {/* <Parameters/> */}
       <ParametersContainer>
