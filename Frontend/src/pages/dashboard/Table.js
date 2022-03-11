@@ -12,11 +12,11 @@ function Table({ chartForm, results, handleSelectedResult }) {
     <>
       {/* global search and filter */}
       {/* table */}
-      <div className="mt-2  flex flex-col rounded-full">
+      <div className="  mt-2  flex flex-col rounded-full  ">
         <div className="-my-2  ">
           <div className="py-1 align-middle inline-block text-white ">
-            <div className="shadow  border-b border-white sm:rounded-lg">
-              <table className="w-max divide-y divide-white">
+            <div className="shadow  border-b border-white sm:rounded-lg ">
+              <table className="divide-y divide-white">
                 <thead className="bg-gray-50">
                   <tr>
                     {results
@@ -24,7 +24,7 @@ function Table({ chartForm, results, handleSelectedResult }) {
                           return (
                             <th
                               scope="col"
-                              className="px-4 py-3 text-left text-xs font-medium text-white uppercase bg-black tracking-wider"
+                              className="  sticky top-0 py-3 text-center text-xs font-medium text-white uppercase bg-black tracking-wider"
                             >
                               {n}
                             </th>
@@ -35,7 +35,7 @@ function Table({ chartForm, results, handleSelectedResult }) {
                   </tr>
                 </thead>
                 {/* <Tbody results={results} handleSelectedResult={}/>*/}
-                <tbody className="bg-black divide-y divide-white"> 
+                <tbody className="bg-black divide-y divide-white "> 
                   {results?.map((r, i) => {
                     return (
                       <Row chartForm={chartForm} key={i} r={r} handleSelectedResult={handleSelectedResult}/>

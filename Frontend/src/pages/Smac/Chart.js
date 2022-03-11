@@ -5,11 +5,22 @@ import { gql, useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import OptimizationContext from "../../context/OptimizationContext";
 import ChartPortal from "./ChartPortal";
+import LeftPane from "../dashboard/LeftPane";
 function Chart({}) {
-  let { loading, handleClick, chartForm, c, su, sd, d } =
-    useContext(OptimizationContext);
+  let {
+    loading,
+    handleClick,
+    chartForm,
+    c,
+    su,
+    sd,
+    d,
+    seeChart,
+    setSeeChart,
+    onMobile,
+  } = useContext(OptimizationContext);
   const [seeAnn, setSeeAnn] = useState(true);
-  const [seeChart, setSeeChart] = useState(false);
+
   require("highcharts/modules/annotations")(Highcharts);
   function smaSignal(data) {
     let labels = [];
@@ -95,7 +106,9 @@ function Chart({}) {
     },
 
     chart: {
-      styledMode: true,
+      // styledMode: true,
+      // height: seeChart ? null : null,
+      // width: seeChart ? 350 : 200,
       zoomType: "xy",
       borderWidth: 1,
       resetZoomButton: {
@@ -134,8 +147,6 @@ function Chart({}) {
         opacity: 1,
       },
 
-      width:  600,
-
       spacingRight: 10,
       navigator: {
         outlineColor: "white",
@@ -155,12 +166,15 @@ function Chart({}) {
         },
         states: {
           hover: {
-            fill: "black",
+            fill: "white",
+            style: {
+              color: "black",
+            },
           },
           select: {
-            fill: "black",
+            fill: "white",
             style: {
-              color: "white",
+              color: "black",
             },
           },
           // disabled: { ... }
@@ -243,61 +257,68 @@ function Chart({}) {
   };
   console.log(loading);
   return (
-    <div className="overflow-x-hidden">
-      <button
-        className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200"
-        onClick={()=>handleClick(setSeeChart)}
-      >
-        SMA Optimization
-      </button>
-      {/* <div className="absolute flex  justify-center -translate-x-1/3 left-1/3 top-[10rem] p-4">
-            <img
-              className={
-                c
-                  ? "shadow-2xl shadow-blue  w-[20rem] h-[20rem] rounded-full  bg-black hidden "
-                  : "shadow-2xl shadow-blue  w-[380px] h-auto rounded-full  bg-black "
-              }
-              src={shown ? shown.image.large : null}
-              alt=""
-            />
-          </div> */}
+    <div className="">
+      <div className="flex items-center justify-center ">
+        {" "}
+        <button
+          className=" mr-3 mt-3 p-3 rounded-full shadow-xl shadow-black border bg-red-500 border-black-500 hover:bg-red-200 text-center"
+          onClick={handleClick}
+        >
+          SMA Optimization
+        </button>
+      </div>
 
-      {/* {results? 
-      <button
-        onClick={chartClick}
-        className="bg-red-500 border border-white rounded-full my-3 p-3 "
-      >
-        Chart
-      </button>:null} */}
-      {/* {c ? (
-        <HighchartsReact
-          highcharts={Highcharts}
-          constructorType={"stockChart"}
-          options={options}
-        />
-      ) : null} */}
-      <button
-        onClick={() => {
-          setSeeAnn(!seeAnn);
-        }}
-        id="auto"
-      >
-        Hide labels
-      </button>
-      <button
-        onClick={() => {
-          setSeeChart(!seeChart);
-        }}
-        id="auto"
-      >
-        Show Chart
-      </button>
+      {onMobile === "mobile" ? (
+        <>
+          <button
+            onClick={() => {
+              setSeeChart(!seeChart);
+            }}
+            id="auto"
+          >
+            Show Chart
+          </button>
+          <div className="">
+            <LeftPane />
+          </div>
+        </>
+      ) : onMobile !== "mobile" ? (
+        <div className="flex justify-start items-start w-screen h-screen ">
+          
+          <LeftPane />
+          <div className=" flex flex-col grow ">
+            {c ? (
+              <>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  constructorType={"stockChart"}
+                  options={options}
+                />
+                <div className="flex justify-center items-center">
+                  <button
+                    className="border p-2 rounded-xl bg-black text-white w-fit"
+                    onClick={() => {
+                      setSeeAnn(!seeAnn);
+                    }}
+                    id="auto"
+                  >
+                    Hide labels
+                  </button>
+                </div>
+              </>
+            ) : <div className="flex items-center justify-center mx-auto h-[30rem] w-[30rem]">
+               <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_m2igjaux.json"  background="transparent"  speed="1"   loop  autoplay></lottie-player>
+              </div>}
+          </div>
+        </div>
+      ) : null}
       <ChartPortal
         options={options}
         seeChart={seeChart}
         setSeeChart={setSeeChart}
         seeAnn={seeAnn}
         setSeeAnn={setSeeAnn}
+        smaSignal={smaSignal}
       />
     </div>
   );

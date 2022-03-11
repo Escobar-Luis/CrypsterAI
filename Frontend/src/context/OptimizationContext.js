@@ -17,7 +17,23 @@ export const OptimizationProvider = ({ children }) => {
   const [d, setd] = useState(null);
   const [open, setopen] = useState(false);
   const [openDos, setopenDos] = useState(false);
-    /**------------------------------------------------------------------------
+  const deviceTyp = () => {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "mobile";
+    } else if (
+      /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+        ua
+      )
+    ) {
+      return "mobile";
+    }
+    return "desktop";
+  };
+  const [onMobile, setOnMobile] = useState(deviceTyp());
+console.log(deviceTyp
+    ())
+  /**------------------------------------------------------------------------
    *                         Stringify Date to 1 Year Ago
    *------------------------------------------------------------------------**/
   Date.prototype.yyyymmdd = function () {
@@ -31,7 +47,7 @@ export const OptimizationProvider = ({ children }) => {
     ].join("-");
   };
   var date = new Date();
-    /**------------------------------------------------------------------------
+  /**------------------------------------------------------------------------
    *                         Chart & SMA User Form States
    *------------------------------------------------------------------------**/
 
@@ -51,14 +67,15 @@ export const OptimizationProvider = ({ children }) => {
    *                         Results Table
    *------------------------------------------------------------------------**/
 
-   function handleSelectedResult(obj) {
+  function handleSelectedResult(obj) {
     setChartForm({ ...chartForm, sma1: obj.sma1, sma2: obj.sma2 });
-    chartClick();
+    chartClick()
+    deviceType();
   }
   function handleOptimizer(r) {
     setResults(r);
   }
-    /**------------------------------------------------------------------------
+  /**------------------------------------------------------------------------
    *                         SMA CHART
    *------------------------------------------------------------------------**/
   const CREATE_CHART = gql`
@@ -69,6 +86,7 @@ export const OptimizationProvider = ({ children }) => {
     }
   `;
   function chartClick() {
+      setc(null)
     smaVisual({
       variables: {
         date: chartForm.date,
@@ -89,14 +107,14 @@ export const OptimizationProvider = ({ children }) => {
         return [new Date(day.date).getTime(), day.close];
         // return [day.close, Highcharts.parseDate(day.date)]
       });
-      
+
       const smau = x.map((day) => {
         return [new Date(day.date).getTime(), day.sma1];
       });
       const smad = x.map((day) => {
         return [new Date(day.date).getTime(), day.sma2];
       });
-      console.log(smau)
+      console.log(smau);
       setc(c);
       setsu(smau);
       setsd(smad);
@@ -106,6 +124,7 @@ export const OptimizationProvider = ({ children }) => {
   /**------------------------------------------------------------------------
    *                         SMA OPTIMIZER
    *------------------------------------------------------------------------**/
+  const [seeChart, setSeeChart] = useState(false);
   const CREATE_SMAC = gql`
     mutation smac($date: String!, $length: Int!, $ticker: String!) {
       smaOptimizer(date: $date, length: $length, ticker: $ticker) {
@@ -113,8 +132,24 @@ export const OptimizationProvider = ({ children }) => {
       }
     }
   `;
+  const deviceType = () => {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      setSeeChart(true);
+      
+    } else if (
+      /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+        ua
+      )
+    ) {
+      setSeeChart(true);
+     
+    }
+    return "desktop";
+  };
   const [smaOptimizer, { loading }] = useMutation(CREATE_SMAC, {
     update: (proxy, mutationResult) => {
+      const isMobile = deviceType();
       const x = mutationResult.data.smaOptimizer.res;
       console.log(x);
       const y = x[0];
@@ -126,10 +161,10 @@ export const OptimizationProvider = ({ children }) => {
       });
       handleOptimizer(x);
       chartClick();
-
+      deviceType();
     },
   });
-  console.log(loading)
+
   function handleClick(x) {
     console.log("click");
     if (optimizerForm.date === "Pick A Date") {
@@ -150,26 +185,29 @@ export const OptimizationProvider = ({ children }) => {
           // ticker: optimizerForm.ticker
         },
       });
-    x(true)}
+    }
   }
-console.log(optimizerForm, chartForm)
+
   let contextData = {
     chartForm: chartForm,
     optimizerForm: optimizerForm,
     setChartForm: setChartForm,
     setoptimizerForm: setoptimizerForm,
-    results:results,
-    openDos:openDos,
-    setopenDos:setopenDos,
-    open:open,
-    setopen:setopen,
-    loading:loading,
-    c:c,
-    su:su,
-    sd:sd,
-    d:d,
-    handleClick:handleClick
-
+    results: results,
+    openDos: openDos,
+    setopenDos: setopenDos,
+    open: open,
+    setopen: setopen,
+    loading: loading,
+    c: c,
+    su: su,
+    sd: sd,
+    d: d,
+    handleClick: handleClick,
+    seeChart: seeChart,
+    setSeeChart: setSeeChart,
+    handleSelectedResult: handleSelectedResult,
+    onMobile: onMobile,
   };
 
   return (

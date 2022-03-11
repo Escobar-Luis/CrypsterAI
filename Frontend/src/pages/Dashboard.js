@@ -17,17 +17,10 @@ import Sentiment from "./dashboard/sentiment/Sentiment";
 import OptimizationContext from "../context/OptimizationContext";
 
 function Dashboard() {
-  let {
-    shown,
-    seen,
-
-    openDash,
-    setCryptoData,
-  } = useContext(DashboardContext);
+  let { shown, seen, openDash, setCryptoData } = useContext(DashboardContext);
   let { results } = useContext(OptimizationContext);
 
   const [click, setclick] = useState(true);
-
 
   /**------------------------------------------------------------------------
    *                         Get All Coin Data From API
@@ -79,56 +72,44 @@ function Dashboard() {
       }
     >
       <Navbar />
-
       <div id="siteWrapper" class="site-wrapper  rounded-full ">
         <Wrapper />
 
         <Title shown={shown} />
 
-        {/* <div className="flex items-start mt-4 ">
-          <LeftPane
-            chartForm={chartForm}
-            seen={seen}
-            results={results}
-            click={click}
-            s={userC}
-            a={cryptoData}
-            brolic={brolic}
-            shown={shown}
-            setshown={setshown}
-            handleSelectedResult={handleSelectedResult}
-          /> */}
-        <div className=" flex flex-col  relatice">
-          {/* <div className="flex w-full flex-col px-16 pt-6 relative"> */}
-          {shown === null ? null : seen === "market" ? (
-            <Markets shown={shown} />
-          ) : seen === "sentiment" ? (
-            <Sentiment shown={shown} />
-          ) : seen === "optimizer" ? (
-            <>
-              <Smac />
-              {/* <Dock setclick={setclick} setSeen={setSeen} /> */}
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
+        {/* <div className="flex items-start mt-4 "> */}
+          
+          <div className=" flex flex-col  relative">
+            {/* <div className="flex w-full flex-col px-16 pt-6 relative"> */}
+            {shown === null ? null : seen === "market" ? (
+              <Markets shown={shown} />
+            ) : seen === "sentiment" ? (
+              <Sentiment shown={shown} />
+            ) : seen === "optimizer" ? (
+              <>
+                <Smac />
+                {/* <Dock setclick={setclick} setSeen={setSeen} /> */}
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
 
-        <div className="flex justify-between ">
-          <div className="flex items-center w-80">
-            {seen === "smac" && results ? (
-              <button
-                onClick={() => setclick(false)}
-                className={
-                  click === false
-                    ? "relative z-10 px-8 py-6 text-sm font-bold uppercase bg-white rounded"
-                    : "relative -translate-x-1 px-8 py-4 border rounded text-white text-sm font-bold border-gray-600/50 bg-opacity-[0.1] uppercase"
-                }
-              >
-                Results
-              </button>
-            ) : null}
-            {/* <button
+          <div className="flex justify-between ">
+            <div className="flex items-center w-80">
+              {seen === "smac" && results ? (
+                <button
+                  onClick={() => setclick(false)}
+                  className={
+                    click === false
+                      ? "relative z-10 px-8 py-6 text-sm font-bold uppercase bg-white rounded"
+                      : "relative -translate-x-1 px-8 py-4 border rounded text-white text-sm font-bold border-gray-600/50 bg-opacity-[0.1] uppercase"
+                  }
+                >
+                  Results
+                </button>
+              ) : null}
+              {/* <button
             onClick={() => setclick(true)}
             className={
               click === false
@@ -138,24 +119,25 @@ function Dashboard() {
           >
             Portfolio
           </button> */}
-          </div>
+            </div>
 
-          {/* <div className="flex items-center justify-end space-x-5 w-80 ">
+            {/* <div className="flex items-center justify-end space-x-5 w-80 ">
             <span className="tracking-wider text-gray-600 text-xxs whitespace-nowrap">
               Luis Alfredo Escobar
             </span> */}
-          {/* <button
+            {/* <button
               onClick={() => setOpen(true)}
               className="px-4 py-4 border rounded text-white text-sm font-bold border-gray-600/50 bg-gray-900 bg-opacity-[0.1] uppercase"
             >
               Add More Tokens
             </button> */}
-          {/* </div> */}
-        </div>
+            {/* </div> */}
+          </div>
 
-        <CryptoCardPortal />
+          <CryptoCardPortal />
+        </div>
       </div>
-    </div>
+      //{" "}
     // </div>
   );
 }

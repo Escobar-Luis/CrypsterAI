@@ -10,10 +10,11 @@ import FreqParam from "./FreqParam";
 import LengthParam from "./LengthParam";
 import Parameters from "./Parameters";
 import OptimizationContext from "../../context/OptimizationContext";
+import LeftPane from "../dashboard/LeftPane";
 
 
 function Smac({}) {
-  let { setoptimizerForm, setChartForm, optimizerForm, loading, chartForm } = useContext(OptimizationContext);
+  let { setoptimizerForm, setChartForm, optimizerForm, loading, chartForm, onMobile } = useContext(OptimizationContext);
 
 
   
@@ -25,7 +26,8 @@ function Smac({}) {
     setChartForm({ ...chartForm, [e.target.name]: e.target.value.trim() });
   }
   return (
-    <div className=" text-white overflow-x-hidden">
+    <div className="flex justify-center items-center  ">
+    <div className=" text-white ">
       {/* <Parameters/> */}
       <ParametersContainer>
         <Parameter icon="⏱️" name="Frequency" option="Daily"></Parameter>
@@ -58,12 +60,8 @@ function Smac({}) {
         </LengthParam>
       </ParametersContainer>
       {loading ? (
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full h-[30rem] bg-blue-500 animate-pusle">
-          <div class="animate-pulse flex space-x-4">
-            <div className="hidden">
-              <Chart/>
-              </div>
-          </div>
+        <div class=" shadow rounded-md p-4 w-full h-[30rem]  animate-pusle">
+          <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_m2igjaux.json"  speed="1"   loop  autoplay></lottie-player>
         </div>
       ) : (
         <Chart
@@ -111,6 +109,7 @@ function Smac({}) {
           </div>
         </div>
       </div> */}
+    </div>
     </div>
   );
 }
