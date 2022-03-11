@@ -5,7 +5,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Damion&family=M+PLUS+Rounded+1c&family=Montserrat:wght@500&family=Parisienne&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Damion&family=Fredoka&family=M+PLUS+Rounded+1c&family=Montserrat:wght@500&family=Parisienne&display=swap');
 html{
-  overflow-x: hidden;
+  transform: rotate(-90deg);
+    transform-origin: left top;
+    /* Set content width to viewport height */
+    width: 100vh;
+    /* Set content height to viewport width */
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
 }
 
 
@@ -117,5 +126,22 @@ html{
     background-image: linear-gradient(to top right, #181930 50%, #3b3c58), linear-gradient(145deg, transparent 75%, #3b4065);
 }
 
+@media only screen and (orientation:portrait){
 
+#charts {
 
+ height: 100vw;
+
+ -webkit-transform: rotate(90deg);
+
+ -moz-transform: rotate(90deg);
+
+ -o-transform: rotate(90deg);
+
+ -ms-transform: rotate(90deg);
+
+ transform: rotate(90deg);
+
+}
+
+}

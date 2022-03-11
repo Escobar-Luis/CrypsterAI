@@ -9,7 +9,7 @@ function ChartPortal({ seeChart, setSeeChart, options, seeAnn, setSeeAnn }) {
   return ReactDom.createPortal(
     <div className="portals fixed top-0 bottom-0 left-0 right-0  z-10  bg-gradient-to-tr from-blue-500 via-transparent to-pink-500 "> 
     <div className="flex flex-col justify-center items-center ">
-      <div id='container' className=" ">
+      <div id='charts' className=" ">
         <HighchartsReact
           highcharts={Highcharts}
           constructorType={"stockChart"}

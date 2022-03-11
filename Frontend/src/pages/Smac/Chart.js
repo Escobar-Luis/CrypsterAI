@@ -279,7 +279,7 @@ function Chart({}) {
           >
             Show Chart
           </button> */}
-          <div className="">
+          <div className="flex justify-center items-center mx-auto">
             <LeftPane />
           </div>
         </>
