@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import astro from "../images/astro.png";
 import { Link } from "react-router-dom";
 import AOS from "aos";
+import image from '../components/CrypsterAI.png'
 AOS.init();
 function Home() {
+  const [load,setLoad] = useState(false)
   useEffect(() => {
     window.scrollTo(0,0)
     window.addEventListener("scroll", function (e) {
@@ -40,7 +42,9 @@ function Home() {
     })
       
   }, []);
-
+// const image = <img src="../images/m_3.png" onLoadedData={()=> {
+//   setLoad(true);
+// }}> </img>
   return (
     <div className="body-home text-white font-whole overflow-hidden">
       <div className="  mt-[10%] gap-y-5 relative flex flex-col h-screen items-center justify-start md:left-[10%] md:mt-0  z-10 ">
@@ -62,16 +66,14 @@ function Home() {
         </h1>
         <h1
           className="text-[2.5rem]  mt-[5rem] md:mt-0  text-white opacity-10 animate-pulse"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="1500"
+
         >
           &#x21E9; Scroll Down &#x21E9;
         </h1>
       </div>
-      <div className="paralax">
+      <div className="paralax" >
         <div className="paralax-item p-item1"></div>
-        <div className="paralax-item p-item2"></div>
+        <div className="paralax-item p-item2" ></div>
         <div className="paralax-item p-item3"></div>
         <div className="paralax-item p-item4 "></div>
       </div>
@@ -88,18 +90,12 @@ function Home() {
             </h2>
           </div>
 
-          <div className=" content flex flex-col items-center justify-center ">
+          <div className=" content flex items-end justify-end  ">
             <div
-              className="z-[2] xs:w-[35rem]"
+              className="z-[2]"
            
             >
-              <lottie-player
-                src="https://assets10.lottiefiles.com/packages/lf20_mplxocmr.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-              ></lottie-player>
+             <img src={image} className=' xs:w-[30rem] mt-[5rem] xs:mb-[5rem]'/>
             </div>
           </div>
           <div
