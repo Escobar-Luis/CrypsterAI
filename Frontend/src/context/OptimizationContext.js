@@ -59,7 +59,7 @@ export const OptimizationProvider = ({ children }) => {
 
   const [optimizerForm, setoptimizerForm] = useState({
     date: date.yyyymmdd(),
-    length: 10,
+    length: 30,
     ticker: shown ? `${shown.symbol.toUpperCase()}-USD` : " ",
   });
   /**------------------------------------------------------------------------
