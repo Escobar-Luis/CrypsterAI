@@ -13,7 +13,7 @@ function MoreInfo({ more, open, onClose }) {
   let { setshown, setOpenDash } = useContext(DashboardContext);
   let { setoptimizerForm, setChartForm, chartForm, optimizerForm } =
     useContext(OptimizationContext);
-  console.log(more?.name);
+ 
 
   function handleClick() {
     handlefirst(more);

@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   const { data, refetch } = useQuery(GET_USER, {
     variables: { username: user },
   });
-  console.log(user);
+
   /**------------------------------------------------------------------------
    *                         Register User
    *------------------------------------------------------------------------**/

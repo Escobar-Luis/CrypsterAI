@@ -20,7 +20,7 @@ function News() {
       .then((data) => {const sorted = data.articles.sort((a, b) => {
           return new Date(b.published_date)-new Date(a.published_date)
       })
-      console.log(sorted)
+
           setNews(sorted)})
       .catch((err) => {
         console.error(err);

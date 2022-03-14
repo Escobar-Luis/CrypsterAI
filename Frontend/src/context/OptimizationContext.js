@@ -31,8 +31,7 @@ export const OptimizationProvider = ({ children }) => {
     return "desktop";
   };
   const [onMobile, setOnMobile] = useState(deviceTyp());
-console.log(deviceTyp
-    ())
+
   /**------------------------------------------------------------------------
    *                         Stringify Date to 1 Year Ago
    *------------------------------------------------------------------------**/
@@ -98,7 +97,7 @@ console.log(deviceTyp
   }
   const [smaVisual, {}] = useMutation(CREATE_CHART, {
     update: (proxy, mutationResult) => {
-      console.log(chartForm);
+
       const x = mutationResult.data.smaVisual.res;
       const all = x.map((day) => {
         return Object.assign({}, day, { date: new Date(day.date).getTime() });
@@ -114,7 +113,7 @@ console.log(deviceTyp
       const smad = x.map((day) => {
         return [new Date(day.date).getTime(), day.sma2];
       });
-      console.log(smau);
+
       setc(c);
       setsu(smau);
       setsd(smad);
@@ -152,7 +151,7 @@ console.log(deviceTyp
     update: (proxy, mutationResult) => {
       const isMobile = deviceType();
       const x = mutationResult.data.smaOptimizer.res;
-      console.log(x);
+    
       const y = x[0];
       setChartForm({
         ...chartForm,
@@ -167,7 +166,7 @@ console.log(deviceTyp
   });
 
   function handleClick(x) {
-    console.log("click");
+    
     setOptimizedOnce(true)
     if (optimizerForm.date === "Pick A Date") {
       alert("Invalid Date");

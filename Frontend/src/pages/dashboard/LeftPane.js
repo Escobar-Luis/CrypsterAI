@@ -6,7 +6,7 @@ function LeftPane({}) {
   let { seen } = useContext(DashboardContext);
   let { s, handleSelectedResult, results, chartForm } =
     useContext(OptimizationContext);
-  console.log(seen);
+
   const [search, setsearch] = useState("");
 
   const visibleCryptos = s?.filter((c) => {

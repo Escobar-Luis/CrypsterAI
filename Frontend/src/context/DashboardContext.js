@@ -63,7 +63,7 @@ export const DashboardProvider = ({ children }) => {
   `;
   const [createToken, {}] = useMutation(CREATE_TOKEN, {
     update: (proxy, mutationResult) => {
-      console.log(mutationResult);
+
       refetch()
     },
   });
@@ -102,13 +102,13 @@ export const DashboardProvider = ({ children }) => {
       setResults(null);
       setc(null);
       setSeen("sentiment");
-      console.log(mutationResult);
+   
     },
   });
 
   function handleDelete() {
     const token = userC?.filter((c) => c.name === shown.id);
-    console.log(token);
+ 
     if (!token) {
       return alert("Make an Account");
     }

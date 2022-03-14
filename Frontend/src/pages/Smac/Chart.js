@@ -22,6 +22,7 @@ function Chart({}) {
     optimizedOnce,
   } = useContext(OptimizationContext);
   const [seeAnn, setSeeAnn] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
 
   require("highcharts/modules/annotations")(Highcharts);
   function smaSignal(data) {
@@ -256,7 +257,7 @@ function Chart({}) {
     //     color: 'white'
     // }]
   };
-  console.log(loading);
+
   return (
     <div className="w-screen h-screen">
       <div className="flex items-center justify-center ">
@@ -290,24 +291,26 @@ function Chart({}) {
           
             {c ? (
            
-             <div className=" flex-col flex grow h-screen">
-             <div className=" ">
+             <div className=" flex-col flex grow h-screen ">
+             
                 <HighchartsReact
+                className='h-[30rem]'
                   highcharts={Highcharts}
                   constructorType={"stockChart"}
                   options={options}
                 />
-             </div>
+            
 
                 <div className="flex justify-center items-center shrink">
                   <button
                     className="border p-2 rounded-xl bg-black text-white w-fit"
                     onClick={() => {
                       setSeeAnn(!seeAnn);
+                      setIsClicked(!isClicked)
                     }}
                     id="auto"
                   >
-                    Hide labels
+                    {isClicked?"Show Labels" : "Hide labels"}
                   </button>
                 </div> 
                 </div>
@@ -332,6 +335,8 @@ function Chart({}) {
         seeAnn={seeAnn}
         setSeeAnn={setSeeAnn}
         smaSignal={smaSignal}
+        isClicked={isClicked}
+        setIsClicked={setIsClicked}
       />
     </div>
   );

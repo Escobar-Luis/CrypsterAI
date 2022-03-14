@@ -4,7 +4,7 @@ import Tbody from "./Tbody";
 
 function Table({ chartForm, results, handleSelectedResult }) {
   const[select, setselect]=useState(false)
-  // console.log(Object.keys(results[0]).map((n) => console.log(n)))
+
   if (!results) {
     return null;
   }
