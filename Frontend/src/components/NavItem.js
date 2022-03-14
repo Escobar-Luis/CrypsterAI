@@ -26,7 +26,7 @@ function NavItem() {
           handleNavSeen(e);
         }}
       >
-        <div className="space-x-3 flex items-center ">
+        <div className="space-x-3 flex items-center hover:cursor-pointer">
           <div className="h-[2rem] w-[2rem]">{o.image}</div>
           <h1>{o.title}</h1>
         </div>

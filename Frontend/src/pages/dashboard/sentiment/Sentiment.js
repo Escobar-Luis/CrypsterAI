@@ -93,6 +93,7 @@ function Sentiment({ shown }) {
               <div className="text-xxs border-2 p-3 rounded-full w-[8rem]">
                 <a
                   href={c.status}
+                  target="_blank"
                   className=" hover:cursor-pointer font-bold text-white capitalize"
                 >
                   {c.name}{" "}

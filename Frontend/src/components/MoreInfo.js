@@ -6,7 +6,9 @@ import AuthContext from "../context/AuthContext";
 import DashboardContext from "../context/DashboardContext";
 import OptimizationContext from "../context/OptimizationContext";
 
+
 function MoreInfo({ more, open, onClose }) {
+
   let { handlefirst } = useContext(AuthContext);
   let { setshown, setOpenDash } = useContext(DashboardContext);
   let { setoptimizerForm, setChartForm, chartForm, optimizerForm } =
@@ -214,8 +216,9 @@ function MoreInfo({ more, open, onClose }) {
 
             <div className="buy-now mt-10 flex justify-center items-center w-full">
               <button
+     
                 onClick={handleClick}
-                className=" flex justify-center bg-pink-500 hover:bg-orange-500 transition-all text-white p-1   rounded-full uppercase animate-bounce"
+                className="analyze flex justify-center bg-pink-500 hover:bg-orange-500 transition-all text-white p-1   rounded-full uppercase animate-bounce"
               >
                 <span className="my-auto p-2">Analyze </span>
                 <span className="h-12 w-12 p-1 my-auto bg-purple-500  block  rounded-full  ">

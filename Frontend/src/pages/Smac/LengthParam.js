@@ -4,7 +4,7 @@ function LengthParam(props) {
   let { setopenDos, openDos} = useContext(OptimizationContext);
   
     return (
-      <div className='grid grid-cols-1 border-l-2 rounded-full'>
+      <div className='grid grid-cols-1 border-l-2 rounded-full '>
       <div  onClick={() => setopenDos(!openDos)} className="hover:cursor-pointer flex  items-center   p-3 w-auto  gap-3 ">
       <div className="flex">
         <h1 className="text-sm">{props.icon}</h1>
@@ -14,7 +14,7 @@ function LengthParam(props) {
     <p className="w-10 text-[0.6rem]">{props.name}</p>
     </div>
     </div>
-      <div className=" w-10">
+      <div className=" flex items-center justify-center">
       {openDos && props.children}
       </div>
       </div>

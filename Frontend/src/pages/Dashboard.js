@@ -16,7 +16,13 @@ import Markets from "./dashboard/Markets";
 import Sentiment from "./dashboard/sentiment/Sentiment";
 import OptimizationContext from "../context/OptimizationContext";
 import News from './dashboard/news/News.js'
+import introJs from 'intro.js'
+
+
 function Dashboard() {
+
+  
+
   let { shown, seen, openDash, setCryptoData } = useContext(DashboardContext);
   let { results } = useContext(OptimizationContext);
 

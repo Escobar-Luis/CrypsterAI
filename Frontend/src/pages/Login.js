@@ -2,7 +2,10 @@ import React, { useContext, useState } from "react";
 import pic from "../images/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import introJs from 'intro.js'
+
 function Login() {
+
   const [formData, updateFormData] = useState({ username: "", password: "" });
   let { setIsLogged, logIn } = useContext(AuthContext);
   function handleChange(e) {
@@ -124,7 +127,7 @@ function Login() {
               </Link>
               <Link
                 onClick={() => setIsLogged(true)}
-                className=" tracking-wide  flex justify-center border-b border-gray-300 hover:text-purple-500"
+                className="guest tracking-wide  flex justify-center border-b border-gray-300 hover:text-purple-500"
                 to="/dashboard"
               >
                 Continue As Guest

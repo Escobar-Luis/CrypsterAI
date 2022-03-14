@@ -38,7 +38,7 @@ function Smac({}) {
           }
         >
           <input
-            className="text-black text-[0.6rem] "
+            className="text-black text-[0.7rem]  w-fit rounded-xl text-center mb-1"
             name="date"
             onChange={handleChange}
             type="Date"
@@ -52,7 +52,7 @@ function Smac({}) {
         >
           <input
             name="length"
-            className="text-black text-[0.6rem]"
+            className="text-black text-[0.7rem]  w-1/2 rounded-xl text-center mb-1"
             onChange={handleChange}
             type="number"
             value={optimizerForm.length}

@@ -15,7 +15,7 @@ function FreqParam(props) {
     <p className="w-10 text-[0.6rem]">{props.name}</p>
     </div>
     </div>
-      <div className=" flex justify-center items-center">
+      <div className=" flex justify-center items-center ml-5">
       {open && props.children}
       </div>
       </div>

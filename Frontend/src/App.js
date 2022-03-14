@@ -10,11 +10,16 @@ import { OptionsProvider } from "./context/OptionsContext";
 import { DashboardProvider } from "./context/DashboardContext";
 import { OptimizationProvider } from "./context/OptimizationContext";
 import PrivateRoute from "./utils/PrivateRoute";
+// import { Steps, Hints } from "intro.js-react";
+
+import "intro.js/introjs.css"
+
 
 function App() {
   window.onbeforeunload = function () {
     window.scrollTo(0, 0);
   };
+  
   return (
     // <div className=" App bg-gradient-to-r from-slate-800 via-purple-800 to-slate-800 h-screen">
     <div className=" App font-whole  ">

@@ -7,7 +7,10 @@
 html{
   overflow-x: hidden;
 }
-
+::-webkit-calendar-picker-indicator{
+    margin-left: -5px;
+    ;
+}
 
 .pt-sans {
   font-family: "PT Sans", sans-serif;

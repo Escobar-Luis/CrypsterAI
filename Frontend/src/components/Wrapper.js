@@ -2,14 +2,18 @@ import React,{useContext} from "react";
 import { RiAddCircleLine, RiAddLine, RiDeleteBin2Line } from "react-icons/ri";
 import DashboardContext from "../context/DashboardContext";
 import image from './CrypsterAI.png'
+import introJs from 'intro.js'
+
+
 function Wrapper({  }) {
+
   const site = document.getElementById("siteWrapper");
   const bodyTag = document.getElementsByTagName("body")[0];
   const mobileNavbar = document.getElementsByClassName("main-navbar")[0];
 
   let { shown, handleAdd, handleDelete, inPort, setOpenDash,} = useContext(DashboardContext);
+ 
 
-  
   return (
     <div class="mobile-navbar-header block md: bg-black rounded-lg">
       <div class="container mx-auto px-3 py-3 lg:px-0  flex items-center justify-between">
@@ -22,6 +26,9 @@ function Wrapper({  }) {
             mobileNavbar.classList.remove("hidden");
           }}
           class="text-white bg-transparent hover:bg-space p-2 rounded-lg  border-2 border-white"
+          data-intro='Click Here To Analyze it in different ways!'
+          data-title='After Selecting Coin'
+          data-step='2'
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,9 +56,13 @@ function Wrapper({  }) {
           </sub> */}
         </div>
         <button
-          onClick={() => setOpenDash(true)}
+        data-intro='Pick From The Top 250 Coins By Market Cap!'
+        data-title='Select A Token Here'
+        data-step='1'
+          onClick={() => {setOpenDash(true)
+          introJs().nextStep()}}
           id="searchButton"
-          class="text-white bg-transparent hover:bg-black p-2 rounded-full border-2 border-white"
+          class="cryptoSearch text-white bg-transparent hover:bg-black p-2 rounded-full border-2 border-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

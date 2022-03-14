@@ -15,7 +15,7 @@ function Parameter(props) {
     <p className="w-10 text-[0.6rem]">{props.name}</p>
     </div>
     </div>
-      <div className=" flex items-center">
+      <div className=" flex items-center justify-center">
       {open && props.children}
       </div>
       {/* <div className="flex  flex-col ml-3 items-start mx-[100px]">
