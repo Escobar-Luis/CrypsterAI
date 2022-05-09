@@ -147,6 +147,7 @@ export const OptimizationProvider = ({ children }) => {
     return "desktop";
   };
   const[optimizedOnce,setOptimizedOnce]=useState(false)
+  
   const [smaOptimizer, { loading }] = useMutation(CREATE_SMAC, {
     update: (proxy, mutationResult) => {
       const isMobile = deviceType();
