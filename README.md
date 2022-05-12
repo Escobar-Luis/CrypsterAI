@@ -38,4 +38,4 @@ python3 manage.py runserver
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ if this project helped you!!
