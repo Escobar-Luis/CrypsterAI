@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import DashboardContext from "../context/DashboardContext";
-import OptionsContext from "../context/OptionsContext";
+import AuthContext from "../../../../context/AuthContext";
+import DashboardContext from "../../../../context/DashboardContext";
+import OptionsContext from "../../../../context/OptionsContext";
 
 function NavItem() {
   let { logout, user, setIsLogged } = useContext(AuthContext);

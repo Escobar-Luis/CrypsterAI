@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import ReactDom from "react-dom";
-import CryptoContainer from "../components/CryptoContainer";
-import DashboardContext from "../context/DashboardContext";
+import CryptoContainer from "./CryptoContainer";
+import DashboardContext from "../../../../context/DashboardContext";
 function CryptoCardPortal({
 
 }) {

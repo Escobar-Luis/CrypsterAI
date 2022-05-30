@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import CryptoCard from "./CryptoCard";
 import MoreInfo from "./MoreInfo";
-import DashboardContext from "../context/DashboardContext";
+import DashboardContext from "../../../../context/DashboardContext";
 function CryptoContainer({
   userSeeing,
 

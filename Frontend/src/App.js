@@ -1,15 +1,15 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing/Landing";
 import "aos/dist/aos.css";
-import Register from "./pages/Register";
-import PublicRoute from "./utils/PublicRoute";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Register from "./pages/Register/Register";
+import PublicRoute from "./navigation/PublicRoute";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
 import { AuthProvider } from "./context/AuthContext";
 import { OptionsProvider } from "./context/OptionsContext";
 import { DashboardProvider } from "./context/DashboardContext";
 import { OptimizationProvider } from "./context/OptimizationContext";
-import PrivateRoute from "./utils/PrivateRoute";
+import PrivateRoute from "./navigation/PrivateRoute";
 // import { Steps, Hints } from "intro.js-react";
 
 import "intro.js/introjs.css"
@@ -28,14 +28,17 @@ function App() {
           <DashboardProvider>
             <OptimizationProvider>
             <Routes>
-              <Route path="/" element={<Home />} />
+              {/* Public Routes */}
               <Route element={<PublicRoute />}>
+              <Route path="/" element={<Landing />} />
                 <Route path="register" element={<Register />} />
                 <Route path="login" element={<Login />} />
               </Route>
+            {/* Private Routes */}
               <Route element={<PrivateRoute />}>
-                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="home" element={<Home />} />
               </Route>
+              {/* 404 page not found will redirect to Home Screen */}
             </Routes>
             </OptimizationProvider>
           </DashboardProvider>

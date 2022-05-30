@@ -1,18 +1,15 @@
-import React,{useContext} from "react";
-import { RiAddCircleLine, RiAddLine, RiDeleteBin2Line } from "react-icons/ri";
-import DashboardContext from "../context/DashboardContext";
-import image from './CrypsterAI.png'
-import introJs from 'intro.js'
+import React, { useContext } from "react";
+import { RiAddLine, RiDeleteBin2Line } from "react-icons/ri";
+import DashboardContext from "../../../../context/DashboardContext";
+import image from "../../../../assets/CrypsterAI.png";
 
-
-function Wrapper({  }) {
-
+function Wrapper() {
   const site = document.getElementById("siteWrapper");
   const bodyTag = document.getElementsByTagName("body")[0];
   const mobileNavbar = document.getElementsByClassName("main-navbar")[0];
 
-  let { shown, handleAdd, handleDelete, inPort, setOpenDash,} = useContext(DashboardContext);
- 
+  let { shown, handleAdd, handleDelete, inPort, setOpenDash } =
+    useContext(DashboardContext);
 
   return (
     <div class="mobile-navbar-header block md: bg-black rounded-lg">
@@ -26,9 +23,9 @@ function Wrapper({  }) {
             mobileNavbar.classList.remove("hidden");
           }}
           class="text-white bg-transparent hover:bg-space p-2 rounded-lg  border-2 border-white"
-          data-intro='Click Here To Analyze it in different ways!'
-          data-title='After Selecting Coin'
-          data-step='2'
+          data-intro="Click Here To Analyze it in different ways!"
+          data-title="After Selecting Coin"
+          data-step="2"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +43,7 @@ function Wrapper({  }) {
           </svg>
         </button>
         <div className="flex flex-col">
-          <img src={image} className='h-[3rem] sm:h-[4rem] w-full'/>
+          <img src={image} className="h-[3rem] sm:h-[4rem] w-full" />
           {/* <span class="selecet-none font-black text-white text-2xl cursor-pointer">
             CrypsterAI
           </span>
@@ -56,11 +53,12 @@ function Wrapper({  }) {
           </sub> */}
         </div>
         <button
-        data-intro='Pick From The Top 250 Coins By Market Cap!'
-        data-title='Select A Token Here'
-        data-step='1'
-          onClick={() => {setOpenDash(true)
-          introJs().nextStep()}}
+          data-intro="Pick From The Top 250 Coins By Market Cap!"
+          data-title="Select A Token Here"
+          data-step="1"
+          onClick={() => {
+            setOpenDash(true);
+          }}
           id="searchButton"
           class="cryptoSearch text-white bg-transparent hover:bg-black p-2 rounded-full border-2 border-white"
         >

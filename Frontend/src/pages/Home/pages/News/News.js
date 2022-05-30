@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 
 import Article from "./Article";
-import DashboardContext from "../../../context/DashboardContext";
+import DashboardContext from "../../../../context/DashboardContext";
 import moment from 'moment';
 moment().format();
 function News() {

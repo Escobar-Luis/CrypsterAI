@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import Table from "./Table";
-import DashboardContext from "../../context/DashboardContext";
-import OptimizationContext from "../../context/OptimizationContext";
+import DashboardContext from "../../../../context/DashboardContext";
+import OptimizationContext from "../../../../context/OptimizationContext";
 function LeftPane({}) {
   let { seen } = useContext(DashboardContext);
   let { s, handleSelectedResult, results, chartForm } =

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import astro from "../images/astro.png";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
-import image from '../components/CrypsterAI.png'
+import image from "../../assets/CrypsterAI.png";
 AOS.init();
-function Home() {
-  const [load,setLoad] = useState(false)
+function Landing() {
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
     window.addEventListener("scroll", function (e) {
       let s = this.scrollY;
       let w = this.outerWidth;
@@ -39,51 +37,28 @@ function Home() {
       document.getElementsByClassName(
         "start"
       )[0].style = `transform: translate3d(${hr_3}px,0,0) scale(${z_5})`;
-    })
-      
+    });
   }, []);
-// const image = <img src="../images/m_3.png" onLoadedData={()=> {
-//   setLoad(true);
-// }}> </img>
+
   return (
     <div className="body-home text-white font-whole overflow-hidden">
       <div className="  mt-[10%] gap-y-5 relative flex flex-col h-screen items-center justify-start md:left-[10%] md:mt-0  z-10 ">
-        <h1
-          className=" text-[5rem] md:text-[12rem]  "
-    
-  
-        >
-          {" "}
-          Welcome
-        </h1>
-        <h1
-          className=" text-[3rem] md:text-[6rem]"
-        
-         
-        >
-          {" "}
-          Crypto Trader{" "}
-        </h1>
-        <h1
-          className="text-[2.5rem]  mt-[5rem] md:mt-0  text-white opacity-10 animate-pulse"
-
-        >
+        <h1 className=" text-[5rem] md:text-[12rem]  "> Welcome</h1>
+        <h1 className=" text-[3rem] md:text-[6rem]"> Crypto Trader </h1>
+        <h1 className="text-[2.5rem]  mt-[5rem] md:mt-0  text-white opacity-10 animate-pulse">
           &#x21E9; Scroll Down &#x21E9;
         </h1>
       </div>
-      <div className="paralax" >
+      <div className="paralax">
         <div className="paralax-item p-item1"></div>
-        <div className="paralax-item p-item2" ></div>
+        <div className="paralax-item p-item2"></div>
         <div className="paralax-item p-item3"></div>
         <div className="paralax-item p-item4 "></div>
       </div>
 
       <div className="contain text-white flex justify-center items-center ">
         <div className=" flex flex-col h-screen text-center ">
-          <div
-            className="content-header"
-            
-          >
+          <div className="content-header">
             <h2 className=" text-[3rem] w-full">To your </h2>
             <h2 className=" text-[3.5rem] w-full uppercase font-bold">
               Destination
@@ -91,11 +66,11 @@ function Home() {
           </div>
 
           <div className=" content flex items-end justify-end  ">
-            <div
-              className="z-[2]"
-           
-            >
-             <img src={image} className=' xs:w-[30rem] mt-[5rem] xs:mb-[5rem]'/>
+            <div className="z-[2]">
+              <img
+                src={image}
+                className=" xs:w-[30rem] mt-[5rem] xs:mb-[5rem]"
+              />
             </div>
           </div>
           <div
@@ -115,4 +90,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Landing;

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import pic from "../images/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
+import pic from "../../assets/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
 import { Link } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 function Register() {
   let { createUser } = useContext(AuthContext);

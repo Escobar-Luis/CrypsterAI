@@ -1,16 +1,12 @@
-import React, { useState, useContext } from "react";
-import { gql, useMutation } from "@apollo/client";
+import React, {useContext } from "react";
 
-import ParametersContainer from "./ParametersContainer";
-import Parameter from "./Parameter";
-import Chart from "./Chart";
+import ParametersContainer from "./components/Input/ParametersContainer";
+import Parameter from "./components/Input/Parameter";
+import Chart from "./components/Visual/Chart";
 import moment from "moment";
-import AuthContext from "../../context/AuthContext";
-import FreqParam from "./FreqParam";
-import LengthParam from "./LengthParam";
-import Parameters from "./Parameters";
-import OptimizationContext from "../../context/OptimizationContext";
-import LeftPane from "../dashboard/LeftPane";
+import FreqParam from "./components/Input/FreqParam";
+import LengthParam from "./components/Input/LengthParam";
+import OptimizationContext from "../../../../../context/OptimizationContext";
 
 
 function Smac({}) {

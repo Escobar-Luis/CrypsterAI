@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }) => {
       );
       sessionStorage.setItem("accessToken", mutationResult.data.register.token);
       setIsLogged(true);
-      history("/dashboard");
+      history("/home");
     },
   });
   /**------------------------------------------------------------------------
@@ -135,7 +135,7 @@ export const AuthProvider = ({ children }) => {
         mutationResult.data.tokenAuth.token
       );
       setIsLogged(true);
-      history("/dashboard");
+      history("/home");
     },
   });
   /**------------------------------------------------------------------------

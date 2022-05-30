@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import OptimizationContext from '../../context/OptimizationContext';
+import OptimizationContext from '../../../../../../../context/OptimizationContext';
 function FreqParam(props) {
   let { setopen, open} = useContext(OptimizationContext);
 

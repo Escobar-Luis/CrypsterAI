@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
-import OptimizationContext from '../../context/OptimizationContext';
+import OptimizationContext from '../../../../../../../context/OptimizationContext';
+
 function LengthParam(props) {
   let { setopenDos, openDos} = useContext(OptimizationContext);
   

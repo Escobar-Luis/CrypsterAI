@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import pic from "../images/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
+import pic from "../../assets/jeremy-bezanger-8zBi9ktYaX8-unsplash-removebg-preview.png";
 import { Link } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import introJs from 'intro.js'
+import AuthContext from "../../context/AuthContext";
+
 
 function Login() {
 
@@ -128,7 +128,7 @@ function Login() {
               <Link
                 onClick={() => setIsLogged(true)}
                 className="guest tracking-wide  flex justify-center border-b border-gray-300 hover:text-purple-500"
-                to="/dashboard"
+                to="/home"
               >
                 Continue As Guest
               </Link>

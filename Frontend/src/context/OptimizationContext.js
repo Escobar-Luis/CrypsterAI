@@ -17,6 +17,10 @@ export const OptimizationProvider = ({ children }) => {
   const [d, setd] = useState(null);
   const [open, setopen] = useState(false);
   const [openDos, setopenDos] = useState(false);
+
+  /**------------------------------------------------------------------------
+   *                  Check if Device is mobile for chart pop-up
+   *------------------------------------------------------------------------**/
   const deviceTyp = () => {
     const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {

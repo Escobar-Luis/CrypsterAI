@@ -42,12 +42,12 @@ html{
 }
 
 .p-item1 {
-  background: url("./images/m_1.png") center/cover no-repeat;
+  background: url("./assets/m_1.png") center/cover no-repeat;
   z-index: 1;
 }
 
 .p-item3 {
-  background: url("./images/m_3.png") bottom/100% no-repeat;
+  background: url("./assets/m_3.png") bottom/100% no-repeat;
   background-size: cover;
   background-position: center;
   z-index: 3;

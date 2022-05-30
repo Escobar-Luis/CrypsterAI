@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
-import { gql, useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
-import OptimizationContext from "../../context/OptimizationContext";
+import OptimizationContext from '../../../../../../../context/OptimizationContext';
 import ChartPortal from "./ChartPortal";
-import LeftPane from "../dashboard/LeftPane";
+import LeftPane from "../../../../../components/Table/LeftPane";
 function Chart() {
   let {
     loading,

@@ -1,28 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import LeftPane from "./dashboard/LeftPane";
+import CryptoCardPortal from "./components/Tokens/CryptoCardPortal";
+import Smac from "./pages/Strategies/Smac/Smac";
+import Navbar from "./components/Nav/Navbar";
+import Wrapper from "./components/Nav/Wrapper";
+import Title from "./components/Nav/Title";
+import DashboardContext from "../../context/DashboardContext";
+import Markets from "./pages/Markets/Markets";
+import Sentiment from "./pages/Sentiment/Sentiment";
+import OptimizationContext from "../../context/OptimizationContext";
+import News from "./pages/News/News";
 
-import { useNavigate } from "react-router-dom";
-
-import { gql, useQuery, useMutation } from "@apollo/client";
-import AuthContext from "../context/AuthContext";
-import Dock from "./dashboard/Dock";
-import CryptoCardPortal from "./CryptoCardPortal";
-import Smac from "./Smac/Smac";
-import Navbar from "../components/Navbar";
-import Wrapper from "../components/Wrapper";
-import Title from "../components/Title";
-import DashboardContext from "../context/DashboardContext";
-import Markets from "./dashboard/Markets";
-import Sentiment from "./dashboard/sentiment/Sentiment";
-import OptimizationContext from "../context/OptimizationContext";
-import News from './dashboard/news/News.js'
-import introJs from 'intro.js'
-
-
-function Dashboard() {
-
-  
-
+function Home() {
   let { shown, seen, openDash, setCryptoData } = useContext(DashboardContext);
   let { results } = useContext(OptimizationContext);
 
@@ -84,38 +72,38 @@ function Dashboard() {
         <Title shown={shown} />
 
         {/* <div className="flex items-start mt-4 "> */}
-          
-          <div className=" flex flex-col  relative">
-            {/* <div className="flex w-full flex-col px-16 pt-6 relative"> */}
-            {shown === null ? null : seen === "market" ? (
-              <Markets shown={shown} />
-            ) : seen === "sentiment" ? (
-              <Sentiment shown={shown} />
-            ) : seen === "optimizer" ? (
-              <>
-                <Smac />
-                {/* <Dock setclick={setclick} setSeen={setSeen} /> */}
-              </>
-            ) : (
-              <News />
-            )}
-          </div>
 
-          <div className="flex justify-between ">
-            <div className="flex items-center w-80">
-              {seen === "smac" && results ? (
-                <button
-                  onClick={() => setclick(false)}
-                  className={
-                    click === false
-                      ? "relative z-10 px-8 py-6 text-sm font-bold uppercase bg-white rounded"
-                      : "relative -translate-x-1 px-8 py-4 border rounded text-white text-sm font-bold border-gray-600/50 bg-opacity-[0.1] uppercase"
-                  }
-                >
-                  Results
-                </button>
-              ) : null}
-              {/* <button
+        <div className=" flex flex-col  relative">
+          {/* <div className="flex w-full flex-col px-16 pt-6 relative"> */}
+          {shown === null ? null : seen === "market" ? (
+            <Markets shown={shown} />
+          ) : seen === "sentiment" ? (
+            <Sentiment shown={shown} />
+          ) : seen === "optimizer" ? (
+            <>
+              <Smac />
+              {/* <Dock setclick={setclick} setSeen={setSeen} /> */}
+            </>
+          ) : (
+            <News />
+          )}
+        </div>
+
+        <div className="flex justify-between ">
+          <div className="flex items-center w-80">
+            {seen === "smac" && results ? (
+              <button
+                onClick={() => setclick(false)}
+                className={
+                  click === false
+                    ? "relative z-10 px-8 py-6 text-sm font-bold uppercase bg-white rounded"
+                    : "relative -translate-x-1 px-8 py-4 border rounded text-white text-sm font-bold border-gray-600/50 bg-opacity-[0.1] uppercase"
+                }
+              >
+                Results
+              </button>
+            ) : null}
+            {/* <button
             onClick={() => setclick(true)}
             className={
               click === false
@@ -125,27 +113,27 @@ function Dashboard() {
           >
             Portfolio
           </button> */}
-            </div>
+          </div>
 
-            {/* <div className="flex items-center justify-end space-x-5 w-80 ">
+          {/* <div className="flex items-center justify-end space-x-5 w-80 ">
             <span className="tracking-wider text-gray-600 text-xxs whitespace-nowrap">
               Luis Alfredo Escobar
             </span> */}
-            {/* <button
+          {/* <button
               onClick={() => setOpen(true)}
               className="px-4 py-4 border rounded text-white text-sm font-bold border-gray-600/50 bg-gray-900 bg-opacity-[0.1] uppercase"
             >
               Add More Tokens
             </button> */}
-            {/* </div> */}
-          </div>
-
-          <CryptoCardPortal />
+          {/* </div> */}
         </div>
+
+        <CryptoCardPortal />
       </div>
-      //{" "}
+    </div>
+    //{" "}
     // </div>
   );
 }
 
-export default Dashboard;
+export default Home;

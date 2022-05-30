@@ -8,7 +8,7 @@ import Power from "./icons/power.svg";
 import Avionics from "./icons/avionics.svg";
 import GNC from "./icons/gnc.svg";
 import Thermal from "./icons/thermal.svg";
-import Bars from './icons/Bars';
+import Bars from '../../icons/Bars';
 function Dock({setSeen, setclick}) {
 
     const bars = [

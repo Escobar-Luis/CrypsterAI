@@ -1,19 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import ReactDom from "react-dom";
-
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import DashboardContext from "../context/DashboardContext";
-import OptimizationContext from "../context/OptimizationContext";
-
+import DashboardContext from "../../../../context/DashboardContext";
+import OptimizationContext from "../../../../context/OptimizationContext";
 
 function MoreInfo({ more, open, onClose }) {
-
-
   let { setshown, setOpenDash } = useContext(DashboardContext);
   let { setoptimizerForm, setChartForm, chartForm, optimizerForm } =
     useContext(OptimizationContext);
- 
 
   function handleClick() {
     setOpenDash(false);
@@ -215,7 +208,6 @@ function MoreInfo({ more, open, onClose }) {
 
             <div className="buy-now mt-10 flex justify-center items-center w-full">
               <button
-     
                 onClick={handleClick}
                 className="analyze flex justify-center bg-pink-500 hover:bg-orange-500 transition-all text-white p-1   rounded-full uppercase animate-bounce"
               >
