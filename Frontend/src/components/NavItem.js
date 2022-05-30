@@ -21,6 +21,7 @@ const history= useNavigate()
             if (user){
               return logout();
             }
+            // If user continues as a guest and our object will read logout but the ui will show Sign Up due to conditional underneat at line 39
             else {
               setIsLogged(false)
               return history('/register')
@@ -34,6 +35,7 @@ const history= useNavigate()
       >
         <div className="space-x-3 flex items-center hover:cursor-pointer">
           <div className="h-[2rem] w-[2rem]">{o.image}</div>
+          {/* if the title is not logout, render the title, but if it is logout and we do not have a user, then render signup (they chose to continue as guest) or logout if they are user */}
           <h1>{o.title !=='Logout' ? o.title: !user ? 'Sign Up' : 'Logout'}</h1>
         </div>
       </li>
