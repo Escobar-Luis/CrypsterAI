@@ -12,14 +12,13 @@ export const DashboardProvider = ({ children }) => {
   /**------------------------------------------------------------------------
    *                         User Info from AuthContext
    *------------------------------------------------------------------------**/
-  let { user, refetch, first, setIsLogged } = useContext(AuthContext);
+  let { user, refetch, setIsLogged } = useContext(AuthContext);
   /**------------------------------------------------------------------------
    *                         Dashboard only states
    *------------------------------------------------------------------------**/
   // store all coins
   const [cryptoData, setCryptoData] = useState(null);
  
-  //   const [shown, setshown] = useState(first ? first : null);
   //   store Backtest Optimization results
   const [results, setResults] = useState(null);
   //   store candle close data for chart display

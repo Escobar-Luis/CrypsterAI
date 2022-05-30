@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import OptimizationContext from "../../context/OptimizationContext";
 import ChartPortal from "./ChartPortal";
 import LeftPane from "../dashboard/LeftPane";
-function Chart({}) {
+function Chart() {
   let {
     loading,
     handleClick,

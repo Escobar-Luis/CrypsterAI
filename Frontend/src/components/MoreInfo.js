@@ -9,14 +9,13 @@ import OptimizationContext from "../context/OptimizationContext";
 
 function MoreInfo({ more, open, onClose }) {
 
-  let { handlefirst } = useContext(AuthContext);
+
   let { setshown, setOpenDash } = useContext(DashboardContext);
   let { setoptimizerForm, setChartForm, chartForm, optimizerForm } =
     useContext(OptimizationContext);
  
 
   function handleClick() {
-    handlefirst(more);
     setOpenDash(false);
     setshown(more);
     setChartForm({ ...chartForm, ticker: `${more.symbol.toUpperCase()}-USD` });

@@ -147,18 +147,11 @@ export const AuthProvider = ({ children }) => {
     setIsLogged(false);
     history("/login");
   }
-  const [first, setfirst] = useState(null);
 
-
-  function handlefirst(c) {
-    setfirst(c);
-  }
 
   let contextData = {
     user: data?.users?.edges[0]?.node ? data.users.edges[0].node : null,
     refetch: refetch,
-    handlefirst: handlefirst,
-    first: first,
     isLogged: isLogged,
     setIsLogged: setIsLogged,
     createUser: createUser,
