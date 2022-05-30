@@ -39,3 +39,19 @@ python3 manage.py runserver
 ## Show your support
 
 Give a ⭐️ if this project helped you!!
+
+## More Info (FrontEnd)
+
+App.js is wrapped in 4 useContexts:
+
+1) AuthProvider
+    a) Check if user Exists in my database using JWT session tokens
+    b) Get user TokenSet Data if they do Exist
+    c) GraphQL/Apollo mutations to handle creating/logging in users
+    d) logging users out by removing session tokens and setting loggedin state to false
+
+2) Options Context
+    a) To keep NavItem.js clean, created an array of all my navbar options in this context, so I can map trough them in NavItem.js and handle ternary logic there
+
+3) Optimization Context
+    a) 
